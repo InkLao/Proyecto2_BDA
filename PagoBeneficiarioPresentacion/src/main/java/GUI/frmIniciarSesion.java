@@ -7,6 +7,8 @@ package GUI;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 
 import javax.swing.JTextField;
@@ -20,7 +22,7 @@ import javax.swing.JPasswordField;
 public class frmIniciarSesion extends javax.swing.JFrame {
 
 
-    // Constructor y otros métodos de inicialización del formulario
+   
     public frmIniciarSesion() {
        initComponents();
         campoTextoUsuario1.setEditable(true);
@@ -45,6 +47,9 @@ public class frmIniciarSesion extends javax.swing.JFrame {
             campoTextoUsuario1.setForeground(Color.BLACK); // Cambia el color del texto a negro
         }
     }); 
+    
+
+      
     }
 
     public String getUsuario() {
@@ -191,7 +196,7 @@ public class frmIniciarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_campoTextoUsuario1ActionPerformed
 private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {
  
-        frmInicioAdmin adminFrame = new frmInicioAdmin();
+       frmInicioAdmin adminFrame = new frmInicioAdmin();
         adminFrame.setVisible(true);
         this.dispose(); 
     }
@@ -200,18 +205,20 @@ private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {
      */
  private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {
       
+// Verificar si el usuario y la contraseña son correctos
         String usuario = campoTextoUsuario1.getText();
         String contrasena = campoTextoContraseña.getText();
 
         if (usuario.equals("usuario") && contrasena.equals("1234")) { // Ejemplo de validación
-            // Abrir frmInicioUsuario
+            // Abrir el formulario frmInicioUsuario
             frmInicioUsuario usuarioFrame = new frmInicioUsuario();
             usuarioFrame.setVisible(true);
-            this.dispose(); // Cierra el frm actual
+            this.dispose(); // Cierra el formulario actual
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
   public static void main(String args[]) {
       
         try {

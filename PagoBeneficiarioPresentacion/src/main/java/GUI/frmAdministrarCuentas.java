@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Arturo ITSON
@@ -15,6 +17,24 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
      */
     public frmAdministrarCuentas() {
         initComponents();
+               // Agregar ActionListener al botón Administrador
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 btnRegresarActionPerformed(evt);
+            }
+        });
+            // Agregar ActionListener al botón Administrador
+        btnNuevoRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 btnNuevoRegistroActionPerformed(evt);
+            }
+        });
+            // Agregar ActionListener al botón Administrador
+       btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 btnGuardarActionPerformed(evt);
+            }
+        });
     }
 
     /**
@@ -199,15 +219,17 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        frmInicioUsuario adminFrame = new  frmInicioUsuario ();
+        adminFrame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnNuevoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoRegistroActionPerformed
-        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(null, "Se registro correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnNuevoRegistroActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(null, "Se guardó correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**

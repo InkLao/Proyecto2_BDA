@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Arturo ITSON
@@ -15,6 +17,12 @@ public class frmAdministrarAbonos extends javax.swing.JFrame {
      */
     public frmAdministrarAbonos() {
         initComponents();
+            // Agregar ActionListener al botón Administrador
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 btnRegresarActionPerformed(evt);
+            }
+        });
     }
 
     /**
@@ -202,7 +210,10 @@ public class frmAdministrarAbonos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+      
+         frmInicioUsuario adminFrame = new  frmInicioUsuario ();
+        adminFrame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void campoTextoRestanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoRestanteActionPerformed
@@ -210,7 +221,7 @@ public class frmAdministrarAbonos extends javax.swing.JFrame {
     }//GEN-LAST:event_campoTextoRestanteActionPerformed
 
     private void btnRealizarAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarAbonoActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Abono Realizado", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnRealizarAbonoActionPerformed
 
     /**

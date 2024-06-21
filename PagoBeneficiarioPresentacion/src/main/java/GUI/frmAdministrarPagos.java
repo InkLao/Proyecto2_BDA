@@ -15,6 +15,12 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
      */
     public frmAdministrarPagos() {
         initComponents();
+          // Agregar ActionListener al botón Administrador
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 btnRegresarActionPerformed(evt);
+            }
+        });
     }
 
     /**
@@ -238,7 +244,9 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+          frmInicioUsuario adminFrame = new  frmInicioUsuario ();
+        adminFrame.setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**

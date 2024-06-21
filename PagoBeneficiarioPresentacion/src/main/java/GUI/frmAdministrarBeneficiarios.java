@@ -10,11 +10,22 @@ package GUI;
  */
 public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmAdministrarBeneficiarios
-     */
+    frmInicioAdmin regresar = new frmInicioAdmin();
     public frmAdministrarBeneficiarios() {
         initComponents();
+         // Agregar ActionListener 
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 btnRegresarActionPerformed(evt);
+            }
+        });
+         // Agregar ActionListener 
+       btnNuevoRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoRegistroActionPerformed(evt);
+            }
+        });
+      
     }
 
     /**
@@ -125,11 +136,15 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+         frmInicioAdmin adminFrame = new frmInicioAdmin();
+        adminFrame.setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnNuevoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoRegistroActionPerformed
-        // TODO add your handling code here:
+     frmRegistrarBeneficiario adminFrame = new frmRegistrarBeneficiario ();
+        adminFrame.setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_btnNuevoRegistroActionPerformed
 
     /**

@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Arturo ITSON
@@ -15,6 +17,18 @@ public class frmCambiarEstatus extends javax.swing.JFrame {
      */
     public frmCambiarEstatus() {
         initComponents();
+           // Agregar ActionListener 
+        btnVerRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 btnVerRegresarActionPerformed(evt);
+            }
+        });
+            // Agregar ActionListener 
+       btnVerGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerGuardarActionPerformed(evt);
+            }
+        });
     }
 
     /**
@@ -152,11 +166,14 @@ public class frmCambiarEstatus extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVerGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerGuardarActionPerformed
-        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(null, "Se guardó correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_btnVerGuardarActionPerformed
 
     private void btnVerRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerRegresarActionPerformed
-        // TODO add your handling code here:
+         frmInicioAdmin adminFrame = new  frmInicioAdmin ();
+        adminFrame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVerRegresarActionPerformed
 
     /**

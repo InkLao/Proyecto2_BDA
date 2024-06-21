@@ -10,11 +10,21 @@ package GUI;
  */
 public class frmInicioAdmin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmInicioAdmin
-     */
+   
     public frmInicioAdmin() {
         initComponents();
+         // Agregar ActionListener 
+        btnAdministrarBeneficiario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdministrarBeneficiarioActionPerformed(evt);
+            }
+        });
+        // Agregar ActionListener
+       btnVerInformacionEstatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerInformacionEstatusActionPerformed(evt);
+            }
+        });
     }
 
     /**
@@ -159,13 +169,22 @@ public class frmInicioAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVerInformacionEstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerInformacionEstatusActionPerformed
-        // TODO add your handling code here:
+      
+        frmCambiarEstatus adminFrame = new frmCambiarEstatus();
+        adminFrame.setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_btnVerInformacionEstatusActionPerformed
 
     private void btnAdministrarBeneficiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarBeneficiarioActionPerformed
-        // TODO add your handling code here:
+     frmAdministrarBeneficiarios adminFrame = new frmAdministrarBeneficiarios ();
+        adminFrame.setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_btnAdministrarBeneficiarioActionPerformed
-
+   private void btnCerrarSesionoActionPerformed(java.awt.event.ActionEvent evt) {                                                           
+     frmIniciarSesion adminFrame = new frmIniciarSesion();
+        adminFrame.setVisible(true);
+        this.dispose(); 
+    }  
     /**
      * @param args the command line arguments
      */

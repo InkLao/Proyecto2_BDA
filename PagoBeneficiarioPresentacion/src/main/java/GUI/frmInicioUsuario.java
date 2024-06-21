@@ -17,6 +17,30 @@ public class frmInicioUsuario extends javax.swing.JFrame {
      */
     public frmInicioUsuario() {
         initComponents();
+         // Agregar ActionListener al botón Administrador
+       btnAdministrarCuentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdministrarCuentasActionPerformed(evt);
+            }
+        });
+         // Agregar ActionListener al botón Administrador
+       btnAdministrarAbonos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 btnAdministrarAbonosActionPerformed(evt);
+            }
+        });
+         // Agregar ActionListener al botón Administrador
+        btnAdministrarPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdministrarPagosActionPerformed(evt);
+            }
+        });
+         // Agregar ActionListener al botón Administrador
+       btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
     }
 
     /**
@@ -148,11 +172,33 @@ public class frmInicioUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdministrarCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarCuentasActionPerformed
-
+    frmAdministrarCuentas adminFrame = new  frmAdministrarCuentas();
+        adminFrame.setVisible(true);
+        this.dispose();
 
         
     }//GEN-LAST:event_btnAdministrarCuentasActionPerformed
+private void btnAdministrarAbonosActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+frmAdministrarAbonos adminFrame = new  frmAdministrarAbonos();
+        adminFrame.setVisible(true);
+        this.dispose();
 
+        
+    }   
+private void btnAdministrarPagosActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+frmAdministrarPagos adminFrame = new  frmAdministrarPagos();
+        adminFrame.setVisible(true);
+        this.dispose();
+
+        
+    }   
+private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+frmIniciarSesion adminFrame = new  frmIniciarSesion();
+        adminFrame.setVisible(true);
+        this.dispose();
+
+        
+    }   
     /**
      * @param args the command line arguments
      */
