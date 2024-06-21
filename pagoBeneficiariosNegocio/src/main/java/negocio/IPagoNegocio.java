@@ -4,10 +4,18 @@
  */
 package negocio;
 
+import DTO.PagoDTO;
+import excepciones.NegocioException;
+import java.util.List;
+
 /**
  *
  * @author eduar
  */
 public interface IPagoNegocio {
-    
+    void crear(PagoDTO pago) throws NegocioException;
+    PagoDTO obtenerPorId(Long id) throws NegocioException;
+    List<PagoDTO> obtenerTodos() throws NegocioException;
+    void actualizar(PagoDTO pago) throws NegocioException;
+    void eliminar(Long id) throws NegocioException;
 }

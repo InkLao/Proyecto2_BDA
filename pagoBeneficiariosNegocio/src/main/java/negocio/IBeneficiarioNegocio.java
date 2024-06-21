@@ -4,10 +4,18 @@
  */
 package negocio;
 
+import DTO.BeneficiarioDTO;
+import excepciones.NegocioException;
+import java.util.List;
+
 /**
  *
  * @author eduar
  */
 public interface IBeneficiarioNegocio {
-    
+    void crear(BeneficiarioDTO beneficiario) throws NegocioException;
+    BeneficiarioDTO obtenerPorId(Long id) throws NegocioException;
+    List<BeneficiarioDTO> obtenerTodos() throws NegocioException;
+    void actualizar(BeneficiarioDTO beneficiario) throws NegocioException;
+    void eliminar(Long id) throws NegocioException;
 }
