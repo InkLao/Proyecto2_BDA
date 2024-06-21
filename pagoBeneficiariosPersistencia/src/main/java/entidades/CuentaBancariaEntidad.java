@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,6 +26,22 @@ public class CuentaBancariaEntidad implements Serializable {
     @Column(name = "idCuentaBancaria")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(nullable = false, length = 55)
+    private String numeroDeCuenta;
+
+    @Column(nullable = false, length = 55)
+    private String clabe;
+
+    @Column(nullable = false, length = 55)
+    private String banco;
+
+    @Column(nullable = false)
+    private Boolean eliminada;
+
+    @ManyToOne
+    @JoinColumn(name = "beneficiario_id", nullable = false)
+    private BeneficiarioEntidad beneficiario;
 
     public Long getId() {
         return id;
@@ -31,6 +49,46 @@ public class CuentaBancariaEntidad implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNumeroDeCuenta() {
+        return numeroDeCuenta;
+    }
+
+    public void setNumeroDeCuenta(String numeroDeCuenta) {
+        this.numeroDeCuenta = numeroDeCuenta;
+    }
+
+    public String getClabe() {
+        return clabe;
+    }
+
+    public void setClabe(String clabe) {
+        this.clabe = clabe;
+    }
+
+    public String getBanco() {
+        return banco;
+    }
+
+    public void setBanco(String banco) {
+        this.banco = banco;
+    }
+
+    public Boolean getEliminada() {
+        return eliminada;
+    }
+
+    public void setEliminada(Boolean eliminada) {
+        this.eliminada = eliminada;
+    }
+
+    public BeneficiarioEntidad getBeneficiario() {
+        return beneficiario;
+    }
+
+    public void setBeneficiario(BeneficiarioEntidad beneficiario) {
+        this.beneficiario = beneficiario;
     }
 
     @Override

@@ -5,6 +5,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,12 +26,36 @@ public class TipoEntidad implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 55)
+    private String nombre;
+
+    @Column(nullable = false)
+    private int numeroParcialidades;
+
+    public TipoEntidad() {}
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getNumeroParcialidades() {
+        return numeroParcialidades;
+    }
+
+    public void setNumeroParcialidades(int numeroParcialidades) {
+        this.numeroParcialidades = numeroParcialidades;
     }
 
     @Override
@@ -51,11 +76,11 @@ public class TipoEntidad implements Serializable {
             return false;
         }
         return true;
-    }
+        }
 
     @Override
     public String toString() {
-        return "entidades.TipoEntidad[ id=" + id + " ]";
+        return "TipoEntidad{" + "id=" + id + ", nombre=" + nombre + ", numeroParcialidades=" + numeroParcialidades + '}';
     }
     
 }

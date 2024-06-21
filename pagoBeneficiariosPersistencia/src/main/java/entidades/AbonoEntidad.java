@@ -5,12 +5,17 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,6 +29,20 @@ public class AbonoEntidad implements Serializable {
     @Column(name = "idAbono")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date fechaHora;
+
+    @Column(nullable = false, precision = 10, scale = 2)
+    private Double monto;
+
+    @ManyToOne
+    @JoinColumn(name = "pago_id", nullable = false)
+    private PagoEntidad pago;
+
+    public AbonoEntidad() {
+    }
 
     public Long getId() {
         return id;
@@ -31,6 +50,30 @@ public class AbonoEntidad implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(Date fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public Double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(Double monto) {
+        this.monto = monto;
+    }
+
+    public PagoEntidad getPago() {
+        return pago;
+    }
+
+    public void setPago(PagoEntidad pago) {
+        this.pago = pago;
     }
 
     @Override
@@ -55,7 +98,7 @@ public class AbonoEntidad implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.AbonoEntidad[ id=" + id + " ]";
+        return "AbonoEntidad{" + "id=" + id + ", fechaHora=" + fechaHora + ", monto=" + monto + ", pago=" + pago + '}';
     }
     
 }
