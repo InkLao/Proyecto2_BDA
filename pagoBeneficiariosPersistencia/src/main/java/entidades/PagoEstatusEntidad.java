@@ -79,7 +79,7 @@ public class PagoEstatusEntidad implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.PagoEstatusEntidad[ id=" + id + " ]";
+        return "PagoEstatusEntidad{" + "id=" + id + ", fechaHora=" + fechaHora + ", mensaje=" + mensaje + ", pago=" + pago + ", estatus=" + estatus + '}';
     }
     
 }
