@@ -66,6 +66,11 @@ public class frmInicioUsuario extends javax.swing.JFrame {
         btnAdministrarCuentas.setText("Administrar Cuentas");
         btnAdministrarCuentas.setBorder(null);
         btnAdministrarCuentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdministrarCuentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdministrarCuentasActionPerformed(evt);
+            }
+        });
 
         btnCerrarSesion.setBackground(new java.awt.Color(23, 154, 249));
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -139,6 +144,14 @@ public class frmInicioUsuario extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdministrarCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarCuentasActionPerformed
+        // TODO add your handling code here:
+        frmAdministrarCuentas c = new frmAdministrarCuentas();
+        c.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_btnAdministrarCuentasActionPerformed
 
     /**
      * @param args the command line arguments
