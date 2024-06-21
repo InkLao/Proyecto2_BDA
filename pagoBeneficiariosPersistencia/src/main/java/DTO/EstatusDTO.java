@@ -14,6 +14,11 @@ public class EstatusDTO {
 
     public EstatusDTO() {}
 
+    public EstatusDTO(Long id, String nombre) {
+        this.id=id;
+        this.nombre=nombre;
+    }
+
     public Long getId() {
         return id;
     }

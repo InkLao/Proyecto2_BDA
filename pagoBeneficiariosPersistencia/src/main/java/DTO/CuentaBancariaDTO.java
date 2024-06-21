@@ -18,6 +18,15 @@ public class CuentaBancariaDTO {
 
     public CuentaBancariaDTO() {}
 
+    public CuentaBancariaDTO(Long id, String numeroDeCuenta, String clabe, String banco, Boolean eliminada, Long beneficiarioId) {
+        this.id=id;
+        this.numeroDeCuenta=numeroDeCuenta;
+        this.clabe=clabe;
+        this.banco=banco;
+        this.eliminada=eliminada;
+        this.beneficiarioId=beneficiarioId;
+    }
+
     public Long getId() {
         return id;
     }

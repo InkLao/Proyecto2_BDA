@@ -16,7 +16,16 @@ public class AbonoDTO {
     private Double monto;
     private Long pagoId;
 
-    public AbonoDTO() {}
+    public AbonoDTO() {
+    
+    }
+
+    public AbonoDTO(Long id, Date fechaHora, Double monto, Long pagoId) {
+        this.id = id;
+        this.fechaHora = fechaHora;
+        this.monto = monto;
+        this.pagoId = pagoId;
+    }
 
     public Long getId() {
         return id;

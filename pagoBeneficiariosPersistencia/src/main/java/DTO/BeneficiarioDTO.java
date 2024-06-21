@@ -20,6 +20,17 @@ public class BeneficiarioDTO {
 
     public BeneficiarioDTO() {}
 
+    public BeneficiarioDTO(Long id, String claveContrato, double saldo, String usuario, String contraseña, String nombres, String paterno, String materno) {
+        this.id=id;
+        this.claveContrato=claveContrato;
+        this.saldo=saldo;
+        this.usuario=usuario;
+        this.contrasena=contraseña;
+        this.nombres=nombres;
+        this.paterno=paterno;
+        this.materno=materno;
+    }
+
     public Long getId() {
         return id;
     }

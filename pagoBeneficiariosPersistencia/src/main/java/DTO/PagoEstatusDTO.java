@@ -17,8 +17,19 @@ public class PagoEstatusDTO {
     private Long pagoId;
     private Long estatusId;
 
-    public PagoEstatusDTO() {}
+    public PagoEstatusDTO() {
+    
+    }
 
+    public PagoEstatusDTO(Long id, Date fechaHora, String mensaje, Long pagoId, Long estatusId) {
+        this.id = id;
+        this.fechaHora = fechaHora;
+        this.mensaje = mensaje;
+        this.pagoId = pagoId;
+        this.estatusId = estatusId;
+    }
+
+    
     public Long getId() {
         return id;
     }

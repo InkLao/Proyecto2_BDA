@@ -27,7 +27,7 @@ public class BeneficiarioEntidad implements Serializable {
     private Long id;
     
      @Column(nullable = false, length = 55)
-    private String clave_contrato;
+    private String claveContrato;
 
     @Column(nullable = false, precision = 10, scale = 2)
     private double saldo;
@@ -61,12 +61,12 @@ public class BeneficiarioEntidad implements Serializable {
         this.id = id;
     }
 
-    public String getClave_contrato() {
-        return clave_contrato;
+    public String getClaveContrato() {
+        return claveContrato;
     }
 
-    public void setClave_contrato(String clave_contrato) {
-        this.clave_contrato = clave_contrato;
+    public void setClaveContrato(String clave_contrato) {
+        this.claveContrato = clave_contrato;
     }
 
     public double getSaldo() {

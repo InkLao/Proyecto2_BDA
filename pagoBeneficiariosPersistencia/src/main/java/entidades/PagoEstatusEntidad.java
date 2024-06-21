@@ -57,6 +57,38 @@ public class PagoEstatusEntidad implements Serializable {
         this.id = id;
     }
 
+    public Date getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(Date fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public PagoEntidad getPago() {
+        return pago;
+    }
+
+    public void setPago(PagoEntidad pago) {
+        this.pago = pago;
+    }
+
+    public EstatusEntidad getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(EstatusEntidad estatus) {
+        this.estatus = estatus;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

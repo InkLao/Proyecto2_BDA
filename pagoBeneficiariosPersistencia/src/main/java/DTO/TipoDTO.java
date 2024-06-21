@@ -15,6 +15,12 @@ public class TipoDTO {
 
     public TipoDTO() {}
 
+    public TipoDTO(Long id, String nombre, int numeroParcialidades) {
+        this.id=id;
+        this.nombre=nombre;
+        this.numeroParcialidades=numeroParcialidades;
+    }
+
     public Long getId() {
         return id;
     }
