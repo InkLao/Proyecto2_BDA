@@ -4,19 +4,63 @@
  */
 package GUI;
 
+import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
+
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+
+
 /**
  *
  * @author Arturo ITSON
  */
 public class frmIniciarSesion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmIniciarSesion
-     */
+
+    // Constructor y otros métodos de inicialización del formulario
     public frmIniciarSesion() {
-        initComponents();
+       initComponents();
+        campoTextoUsuario1.setEditable(true);
+        
+        // Agregar ActionListener al botón Administrador
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminActionPerformed(evt);
+            }
+        });
+         // Agregar ActionListener al botón Ingresar
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+        // Agregar un WindowListener para detectar cuando la ventana se abre
+    addWindowListener(new WindowAdapter() {
+        @Override
+        public void windowOpened(WindowEvent e) {
+            // Ajustar el color del texto del campo de usuario
+            campoTextoUsuario1.setForeground(Color.BLACK); // Cambia el color del texto a negro
+        }
+    }); 
     }
 
+    public String getUsuario() {
+        return campoTextoUsuario1.getText();
+    }
+
+    public String getContrasena() {
+        return campoTextoContraseña.getText();
+    }
+
+    public JTextField getCampoTextoContraseña() {
+        return campoTextoContraseña;
+    }
+
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,16 +189,31 @@ public class frmIniciarSesion extends javax.swing.JFrame {
     private void campoTextoUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoUsuario1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTextoUsuario1ActionPerformed
-
+private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {
+ 
+        frmInicioAdmin adminFrame = new frmInicioAdmin();
+        adminFrame.setVisible(true);
+        this.dispose(); 
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+ private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {
+      
+        String usuario = campoTextoUsuario1.getText();
+        String contrasena = campoTextoContraseña.getText();
+
+        if (usuario.equals("usuario") && contrasena.equals("1234")) { // Ejemplo de validación
+            // Abrir frmInicioUsuario
+            frmInicioUsuario usuarioFrame = new frmInicioUsuario();
+            usuarioFrame.setVisible(true);
+            this.dispose(); // Cierra el frm actual
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+  public static void main(String args[]) {
+      
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -162,22 +221,14 @@ public class frmIniciarSesion extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frmIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmIniciarSesion().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new frmIniciarSesion().setVisible(true);
         });
     }
 

@@ -25,7 +25,7 @@ public class TipoDAO implements ITipoDAO{
         em.getTransaction().commit();
         em.close();
     }
-
+ 
     @Override
     public TipoEntidad obtenerPorId(Long id) {
         EntityManager em = emf.createEntityManager();

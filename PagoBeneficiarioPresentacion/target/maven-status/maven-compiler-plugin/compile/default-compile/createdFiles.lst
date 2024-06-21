@@ -1,6 +1,7 @@
 GUI\frmNuevoPago$1.class
 GUI\frmAdministrarAbonos$3.class
 GUI\frmAdministrarCuentas$4.class
+GUI\frmIniciarSesion$4.class
 GUI\frmInicioAdmin.class
 GUI\frmAdministrarPagos$2.class
 GUI\frmAdministrarCuentas$2.class
@@ -23,6 +24,7 @@ GUI\frmAdministrarBeneficiarios$4.class
 GUI\frmAdministrarAbonos$2.class
 GUI\frmAdministrarCuentas$5.class
 GUI\frmCambiarEstatus$5.class
+GUI\frmIniciarSesion$5.class
 GUI\frmCambiarEstatus$4.class
 GUI\frmAdministrarBeneficiarios$3.class
 GUI\frmInicioAdmin$3.class
