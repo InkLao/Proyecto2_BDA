@@ -6,19 +6,22 @@ package entidades;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author eduar
  */
-@javax.persistence.Entity
-public class Beneficiario implements Serializable {
+@Entity
+@Table(name = "tblTipos")
+public class TipoEntidad implements Serializable {
 
     @Id
-    @Column(name = "idBeneficiario")
+    @Column(name = "idTipo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -40,10 +43,10 @@ public class Beneficiario implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Beneficiario)) {
+        if (!(object instanceof TipoEntidad)) {
             return false;
         }
-        Beneficiario other = (Beneficiario) object;
+        TipoEntidad other = (TipoEntidad) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -52,7 +55,7 @@ public class Beneficiario implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Beneficiario[ id=" + id + " ]";
+        return "entidades.TipoEntidad[ id=" + id + " ]";
     }
     
 }
