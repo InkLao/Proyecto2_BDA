@@ -9,15 +9,20 @@
     <packaging>jar</packaging>
     
     <!-- Dependencia hacia el módulo de persistencia -->
+    
+    <!-- Propiedades para la compilación -->
     <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PagoBeneficiarioPresentacion</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>pagoBeneficiariosPersistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
-    
-    <!-- Propiedades para la compilación -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>

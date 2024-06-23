@@ -3,7 +3,9 @@ GUI\frmNuevoPago$1.class
 GUI\frmAdministrarCuentas$4.class
 GUI\frmIniciarSesion$4.class
 GUI\frmInicioAdmin.class
+utilerias\Utilidades.class
 GUI\frmInicioUsuario.class
+utilerias\ComboItems.class
 GUI\frmAdministrarBeneficiarios$2.class
 GUI\frmInicioAdmin$4.class
 GUI\frmInicioUsuario$1.class
@@ -16,6 +18,7 @@ GUI\frmCambiarEstatus$2.class
 GUI\frmAdministrarBeneficiarios.class
 GUI\frmAdministrarAbonos$2.class
 GUI\frmCambiarEstatus$5.class
+utilerias\JButtonCellEditor.class
 GUI\frmCambiarEstatus$4.class
 GUI\frmAdministrarBeneficiarios$3.class
 GUI\frmIniciarSesion$3.class
@@ -45,12 +48,15 @@ GUI\frmCambiarEstatus.class
 GUI\frmAdministrarBeneficiarios$4.class
 GUI\frmAdministrarCuentas$5.class
 GUI\frmIniciarSesion$5.class
+utilerias\JButtonCell.class
 GUI\frmRegistrarBeneficiario.class
+utilerias\JButtonRenderer.class
 GUI\frmInicioAdmin$3.class
 GUI\frmInicioUsuario$5.class
 GUI\frmAdministrarAbonos$4.class
 com\mycompany\pagobeneficiariopresentacion\PagoBeneficiarioPresentacion.class
 GUI\frmAdministrarCuentas$7.class
+Dtos\BeneficiariosDTO.class
 GUI\frmNuevoPago.class
 GUI\frmAdministrarBeneficiarios$5.class
 GUI\frmIniciarSesion$1.class

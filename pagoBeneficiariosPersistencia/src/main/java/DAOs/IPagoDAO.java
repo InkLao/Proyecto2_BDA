@@ -4,14 +4,17 @@
  */
 package DAOs;
 
+import DTO.BeneficiarioDTO;
 import entidades.PagoEntidad;
 import java.util.List;
+import javax.persistence.PersistenceException;
 
 /**
  *
  * @author eduar
  */
 public interface IPagoDAO {
+    
     void crear(PagoEntidad pago);
     PagoEntidad obtenerPorId(Long id);
     List<PagoEntidad> obtenerTodos();

@@ -4,15 +4,29 @@
  */
 package GUI;
 
+import Dtos.BeneficiariosDTO;
+import excepciones.NegocioException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import negocio.BeneficiarioNegocio;
+import negocio.IBeneficiarioNegocio;
+ 
+
 /**
  *
  * @author Arturo ITSON
  */
 public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
+    
+    private IBeneficiarioNegocio negocio = new BeneficiarioNegocio();
 
     frmInicioAdmin regresar = new frmInicioAdmin();
     public frmAdministrarBeneficiarios() {
         initComponents();
+        
+        cargarMetodosIniciales();
+        
          // Agregar ActionListener 
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -28,6 +42,83 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
       
     }
 
+    
+    
+    private void cargarMetodosIniciales(){
+        this.cargarConfiguracionInicialTablaBeneficiarios();
+        this.cargarBeneficiariosEnTabla();
+    
+        
+    }
+    
+    
+     private void cargarConfiguracionInicialTablaBeneficiarios() {
+        final int columnaId = 0;
+
+    } 
+    
+    
+    private int getIdSeleccionadoTablaBeneficiarios() {
+        int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
+            int indiceColumnaId = 0;
+            int idBeneficiarioSeleccionado = (int) modelo.getValueAt(indiceFilaSeleccionada,
+                    indiceColumnaId);
+            return idBeneficiarioSeleccionado;
+        } else {
+            return 0;
+        }
+    }
+
+    private void editar() {
+        //Metodo para regresar el alumno seleccionado
+        int id = this.getIdSeleccionadoTablaBeneficiarios();
+
+    }
+
+    private void eliminar() {
+        //Metodo para regresar el alumno seleccionado
+        int id = this.getIdSeleccionadoTablaBeneficiarios();
+    }
+
+    private void llenarTablaBeneficiarios(List<BeneficiariosDTO> beneficiariosLista) {
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblBeneficiarios.getModel();
+
+        if (modeloTabla.getRowCount() > 0) {
+            for (int i = modeloTabla.getRowCount() - 1; i > -1; i--) {
+                modeloTabla.removeRow(i);
+            }
+        }
+
+        if (beneficiariosLista != null) {
+            beneficiariosLista.forEach(row -> {
+                Object[] fila = new Object[6];
+                fila[0] = row.getClaveContrato();
+                fila[1] = row.getMaterno();
+                fila[2] = row.getPaterno();
+                fila[3] = row.getMaterno();
+                fila[4] = row.getUsuario();
+                fila[5] = row.getSaldo();
+                modeloTabla.addRow(fila);
+            });
+        }
+    }
+
+    private void cargarBeneficiariosEnTabla() {
+        try {
+            List<BeneficiariosDTO> beneficiarios = this.negocio.buscarBeneficiarioTabla();
+            this.llenarTablaBeneficiarios(beneficiarios);
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
+    
+    private void convertirABeneficiarioDTO(){
+    
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +130,7 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblBeneficiarios = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
         btnNuevoRegistro = new javax.swing.JButton();
 
@@ -48,8 +139,8 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setBackground(new java.awt.Color(225, 225, 225));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblBeneficiarios.setBackground(new java.awt.Color(225, 225, 225));
+        tblBeneficiarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -68,11 +159,10 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblBeneficiarios);
 
         btnRegresar.setBackground(new java.awt.Color(23, 154, 249));
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnRegresar.setForeground(new java.awt.Color(0, 0, 0));
         btnRegresar.setText("Regresar");
         btnRegresar.setBorder(null);
         btnRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -84,7 +174,6 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
 
         btnNuevoRegistro.setBackground(new java.awt.Color(23, 154, 249));
         btnNuevoRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnNuevoRegistro.setForeground(new java.awt.Color(0, 0, 0));
         btnNuevoRegistro.setText("Nuevo Registro");
         btnNuevoRegistro.setBorder(null);
         btnNuevoRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -187,6 +276,6 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblBeneficiarios;
     // End of variables declaration//GEN-END:variables
 }

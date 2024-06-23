@@ -5,6 +5,7 @@
 package DAOs;
 
 import entidades.BeneficiarioEntidad;
+import excepciones.PersistenciaException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,7 +16,7 @@ import javax.persistence.Persistence;
  * @author eduar
  */
 public class BeneficiarioDAO implements IBeneficiarioDAO{
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_unit_name");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_pagoBeneficiariosPersistencia_jar_1.0-SNAPSHOTPU");
 
     @Override
     public void crear(BeneficiarioEntidad beneficiario) {
@@ -35,7 +36,7 @@ public class BeneficiarioDAO implements IBeneficiarioDAO{
     }
 
     @Override
-    public List<BeneficiarioEntidad> obtenerTodos() {
+    public List<BeneficiarioEntidad> obtenerTodos() throws PersistenciaException {
         EntityManager em = emf.createEntityManager();
         List<BeneficiarioEntidad> beneficiarios = em.createQuery("SELECT b FROM BeneficiarioEntidad b", BeneficiarioEntidad.class).getResultList();
         em.close();

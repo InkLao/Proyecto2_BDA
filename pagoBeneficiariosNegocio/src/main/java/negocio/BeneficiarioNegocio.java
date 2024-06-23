@@ -4,10 +4,14 @@
  */
 package negocio;
 
+import DAOs.BeneficiarioDAO;
 import DAOs.IBeneficiarioDAO;
 import DTO.BeneficiarioDTO;
+import Dtos.BeneficiariosDTO;
 import entidades.BeneficiarioEntidad;
 import excepciones.NegocioException;
+import excepciones.PersistenciaException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,12 +20,51 @@ import java.util.stream.Collectors;
  * @author eduar
  */
 public class BeneficiarioNegocio implements IBeneficiarioNegocio{
-    private IBeneficiarioDAO beneficiarioDAO;
+    
+    private IBeneficiarioDAO beneficiarioDAO = new BeneficiarioDAO();
 
     public BeneficiarioNegocio(IBeneficiarioDAO beneficiarioDAO) {
         this.beneficiarioDAO = beneficiarioDAO;
     }
 
+    public BeneficiarioNegocio() {
+
+    }
+
+    
+    @Override
+    public List<BeneficiariosDTO> buscarBeneficiarioTabla() throws NegocioException {
+        try {
+            List<BeneficiarioEntidad> beneficiarios = this.beneficiarioDAO.obtenerTodos();
+            return this.convertirBeneficiarioDTO(beneficiarios);
+        } catch (PersistenciaException ex) {
+            System.out.println(ex.getMessage());
+            throw new NegocioException(ex.getMessage());
+        }
+    }    
+    
+    private List<Dtos.BeneficiariosDTO> convertirBeneficiarioDTO(List<BeneficiarioEntidad> beneficiarios) throws NegocioException {
+        if (beneficiarios == null) {
+            throw new NegocioException("No se pudieron obtener los benefeficiarios. No hay registros.");
+        }
+        
+            List<BeneficiariosDTO> beneficiarioDTO = new ArrayList<>();
+        for (BeneficiarioEntidad beneficiario : beneficiarios) {
+            BeneficiariosDTO dto = new BeneficiariosDTO();
+            dto.setClaveContrato(beneficiario.getClaveContrato());
+            dto.setContrasena(beneficiario.getContraseña());
+            dto.setId(beneficiario.getId());
+            dto.setMaterno(beneficiario.getMaterno());
+            dto.setNombres(beneficiario.getNombres());
+            dto.setPaterno(beneficiario.getPaterno());
+            dto.setSaldo(beneficiario.getSaldo());
+            dto.setUsuario(beneficiario.getUsuario());
+            beneficiarioDTO.add(dto);
+        }
+        return beneficiarioDTO;
+    }    
+    
+    
     @Override
     public void crear(BeneficiarioDTO beneficiario) throws NegocioException {
         try {

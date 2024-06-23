@@ -5,6 +5,7 @@
 package DAOs;
 
 import entidades.BeneficiarioEntidad;
+import excepciones.PersistenciaException;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
 public interface IBeneficiarioDAO {
     void crear(BeneficiarioEntidad beneficiario);
     BeneficiarioEntidad obtenerPorId(Long id);
-    List<BeneficiarioEntidad> obtenerTodos();
+    List<BeneficiarioEntidad> obtenerTodos() throws PersistenciaException;
     void actualizar(BeneficiarioEntidad beneficiario);
     void eliminar(Long id);
 }
