@@ -32,7 +32,6 @@ GUI\frmAdministrarCuentas.class
 GUI\frmInicioAdmin$2.class
 GUI\frmAdministrarAbonos$3.class
 GUI\frmAdministrarPagos$2.class
-GUI\frmNuevoPago$6.class
 GUI\frmAdministrarCuentas$2.class
 GUI\frmIniciarSesion$2.class
 GUI\frmCambiarEstatus$3.class

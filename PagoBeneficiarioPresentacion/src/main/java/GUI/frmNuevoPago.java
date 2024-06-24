@@ -24,13 +24,7 @@ public class frmNuevoPago extends javax.swing.JFrame {
     public frmNuevoPago() {
         initComponents();
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        jComboBox1 = new javax.swing.JComboBox<>();
+  // Inicializa el ComboBox correctamente
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Reembolso", "Proveedor", "Viático"}));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,7 +48,7 @@ public class frmNuevoPago extends javax.swing.JFrame {
                 campoTextoParcialidades.setText("3");
                 break;
             case 2:
-                campoTextoParcialidades.setText("6");
+                campoTextoParcialidades.setText("7");
                 break;
             default:
                 campoTextoParcialidades.setText("");
@@ -235,7 +229,7 @@ public class frmNuevoPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        try {
+      try {
             double monto = Double.parseDouble(campoTextoMonto.getText());
             String fecha = campoTextoFecha.getText();
             int parcialidades = Integer.parseInt(campoTextoParcialidades.getText());
@@ -246,17 +240,10 @@ public class frmNuevoPago extends javax.swing.JFrame {
             pagoNegocio.crear(prestamoDTO);
 
             JOptionPane.showMessageDialog(this, "Préstamo guardado exitosamente!");
-        } 
-//        catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-//        } 
-        catch (NegocioException e) {
+        } catch (NegocioException e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el préstamo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado al guardar el préstamo.", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
+
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -266,7 +253,9 @@ public class frmNuevoPago extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+       int tipo = jComboBox1.getSelectedIndex();
+        actualizarParcialidades(tipo);
+        actualizarFecha();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
