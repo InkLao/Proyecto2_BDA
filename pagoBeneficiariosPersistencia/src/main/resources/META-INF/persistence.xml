@@ -9,7 +9,6 @@
     <class>entidades.AbonoEntidad</class>
     <class>entidades.PagoEstatusEntidad</class>
     <class>entidades.BeneficiarioEntidad</class>
-    <class>entidades.PrestamoEntidad</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pagoBeneficiario?serverTimeZone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

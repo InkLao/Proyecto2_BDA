@@ -4,22 +4,17 @@
  */
 package GUI;
 
-import DAOs.PrestamoDAO;
-import DTO.PrestamoDTO;
-import entidades.PrestamoEntidad;
-import javax.swing.JOptionPane;
-import utilerias.Convertidor;
-
 /**
  *
  * @author Arturo ITSON
  */
 public class frmNuevoPago extends javax.swing.JFrame {
 
-   private final PrestamoDAO prestamoDAO;
+    /**
+     * Creates new form frmNuevoPago
+     */
     public frmNuevoPago() {
         initComponents();
-        prestamoDAO = new PrestamoDAO(); 
     }
 
     /**
@@ -175,33 +170,11 @@ public class frmNuevoPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-    try {
-        double monto = Double.parseDouble(campoTextoMonto.getText());
-        String fecha = campoTextoFecha.getText();
-        int parcialidades = Integer.parseInt(campoTextoParcialidades.getText());
-
-        // Utiliza el constructor adecuado de PrestamoDTO
-        PrestamoDTO prestamoDTO = new PrestamoDTO(monto, fecha, parcialidades);
-
-        // Convertir el DTO a entidad
-        PrestamoEntidad prestamoEntidad = Convertidor.convertirDTOPrestamo(prestamoDTO);
-
-        // Crear una instancia de PrestamoDAO
-        PrestamoDAO prestamoDAO = new PrestamoDAO();
-
-        // Llamar al método no estático guardarPrestamo desde la instancia de PrestamoDAO
-        prestamoDAO.guardarPrestamo(prestamoEntidad);
-
-        JOptionPane.showMessageDialog(this, "Prestamo guardado exitosamente!");
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-       frmInicioUsuario InicioUsuarioFrame= new frmInicioUsuario();
-       InicioUsuarioFrame.setVisible(true);
-       this.dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarActionPerformed
 
 
