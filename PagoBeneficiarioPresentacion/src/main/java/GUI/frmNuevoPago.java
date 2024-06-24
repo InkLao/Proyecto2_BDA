@@ -4,17 +4,22 @@
  */
 package GUI;
 
+import DAOs.PrestamoDAO;
+import DTO.PrestamoDTO;
+import entidades.PrestamoEntidad;
+import javax.swing.JOptionPane;
+import utilerias.Convertidor;
+
 /**
  *
  * @author Arturo ITSON
  */
 public class frmNuevoPago extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmNuevoPago
-     */
+    private final PrestamoDAO prestamoDAO;
     public frmNuevoPago() {
         initComponents();
+        prestamoDAO = new PrestamoDAO(); 
     }
 
     /**
@@ -170,11 +175,31 @@ public class frmNuevoPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+try {
+        double monto = Double.parseDouble(campoTextoMonto.getText());
+        String fecha = campoTextoFecha.getText();
+        int parcialidades = Integer.parseInt(campoTextoParcialidades.getText());
+
+        PrestamoDTO prestamoDTO = new PrestamoDTO(monto, fecha, parcialidades);
+        PrestamoEntidad prestamoEntidad = Convertidor.convertirDTOaEntidad(prestamoDTO);
+
+        try (PrestamoDAO prestamoDAO = new PrestamoDAO()) {
+            prestamoDAO.guardarPrestamo(prestamoEntidad);
+        }
+
+        JOptionPane.showMessageDialog(this, "Prestamo guardado exitosamente!");
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el préstamo.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+       frmInicioUsuario InicioUsuarioFrame= new frmInicioUsuario();
+       InicioUsuarioFrame.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
 
