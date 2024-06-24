@@ -22,6 +22,13 @@ public class PrestamoDTO {
         this.parcialidades = parcialidades;
     }
 
+    public PrestamoDTO(Long id, double monto, String fecha, int parcialidades) {
+        this.id = id;
+        this.monto = monto;
+        this.fecha = fecha;
+        this.parcialidades = parcialidades;
+    }
+
     public Long getId() {
         return id;
     }

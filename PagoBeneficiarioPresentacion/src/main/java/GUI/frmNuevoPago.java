@@ -4,10 +4,13 @@
  */
 package GUI;
 
-import DAOs.PrestamoDAO;
+import DTO.BeneficiarioDTO;
 import DTO.PrestamoDTO;
 import entidades.PrestamoEntidad;
+import excepciones.NegocioException;
 import javax.swing.JOptionPane;
+import negocio.IPagoNegocio;
+import negocio.PagoNegocio;
 import utilerias.Convertidor;
 
 /**
@@ -16,10 +19,51 @@ import utilerias.Convertidor;
  */
 public class frmNuevoPago extends javax.swing.JFrame {
 
-    private final PrestamoDAO prestamoDAO;
+    private IPagoNegocio pagoNegocio = new PagoNegocio();
+
     public frmNuevoPago() {
         initComponents();
-        prestamoDAO = new PrestamoDAO(); 
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Reembolso", "Proveedor", "Viático"}));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+    }
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
+        String tipo = (String) jComboBox1.getSelectedItem();
+        actualizarParcialidades(tipo);
+        actualizarFecha();
+    }
+
+    private void actualizarParcialidades(String tipo) {
+        switch (tipo) {
+            case "Reembolso":
+                campoTextoParcialidades.setText("1");
+                break;
+            case "Proveedor":
+                campoTextoParcialidades.setText("3");
+                break;
+            case "Viático":
+                campoTextoParcialidades.setText("6");
+                break;
+            default:
+                campoTextoParcialidades.setText("");
+                break;
+        }
+    }
+
+    private void actualizarFecha() {
+        campoTextoFecha.setText(java.time.LocalDate.now().toString());
     }
 
     /**
@@ -40,6 +84,8 @@ public class frmNuevoPago extends javax.swing.JFrame {
         campoTextoParcialidades = new javax.swing.JTextField();
         campoTextoFecha = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,18 +96,13 @@ public class frmNuevoPago extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(217, 217, 217));
 
         jblMonto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblMonto.setForeground(new java.awt.Color(0, 0, 0));
         jblMonto.setText("Monto");
 
         jblFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblFecha.setForeground(new java.awt.Color(0, 0, 0));
         jblFecha.setText("Fecha");
 
         jblParcialidades.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblParcialidades.setForeground(new java.awt.Color(0, 0, 0));
         jblParcialidades.setText("Parcialidades");
-
-        campoTextoMonto.setBackground(new java.awt.Color(255, 255, 255));
 
         campoTextoParcialidades.setBackground(new java.awt.Color(217, 217, 217));
 
@@ -69,7 +110,6 @@ public class frmNuevoPago extends javax.swing.JFrame {
 
         btnConfirmar.setBackground(new java.awt.Color(51, 255, 51));
         btnConfirmar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnConfirmar.setForeground(new java.awt.Color(0, 0, 0));
         btnConfirmar.setText("Hecho");
         btnConfirmar.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), null));
         btnConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -79,26 +119,33 @@ public class frmNuevoPago extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Tipo");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reembolso", "Proveedor", "Viático" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jblMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jblParcialidades))
+                    .addComponent(jblParcialidades)
+                    .addComponent(jLabel1))
                 .addGap(42, 42, 42)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoTextoParcialidades, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campoTextoParcialidades, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(campoTextoFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(campoTextoMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,22 +154,25 @@ public class frmNuevoPago extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jblMonto)
                     .addComponent(campoTextoMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jblFecha)
-                    .addComponent(campoTextoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTextoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jblFecha))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jblParcialidades)
                     .addComponent(campoTextoParcialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
 
         btnRegresar.setBackground(new java.awt.Color(23, 154, 249));
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnRegresar.setForeground(new java.awt.Color(0, 0, 0));
         btnRegresar.setText("Regresar");
         btnRegresar.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), null));
         btnRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -137,9 +187,9 @@ public class frmNuevoPago extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addGap(72, 72, 72)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(31, 31, 31)
@@ -149,9 +199,9 @@ public class frmNuevoPago extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(63, 63, 63)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(433, Short.MAX_VALUE)
@@ -175,31 +225,31 @@ public class frmNuevoPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-try {
-        double monto = Double.parseDouble(campoTextoMonto.getText());
-        String fecha = campoTextoFecha.getText();
-        int parcialidades = Integer.parseInt(campoTextoParcialidades.getText());
+        try {
+            double monto = Double.parseDouble(campoTextoMonto.getText());
+            String fecha = campoTextoFecha.getText();
+            int parcialidades = Integer.parseInt(campoTextoParcialidades.getText());
+            String tipo = (String) jComboBox1.getSelectedItem();
 
-        PrestamoDTO prestamoDTO = new PrestamoDTO(monto, fecha, parcialidades);
-        PrestamoEntidad prestamoEntidad = Convertidor.convertirDTOaEntidad(prestamoDTO);
+            PrestamoDTO prestamoDTO = new PrestamoDTO(monto, fecha, parcialidades);
 
-        try (PrestamoDAO prestamoDAO = new PrestamoDAO()) {
-            prestamoDAO.guardarPrestamo(prestamoEntidad);
+            pagoNegocio.crear(prestamoDTO);
+
+            JOptionPane.showMessageDialog(this, "Préstamo guardado exitosamente!");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el préstamo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado al guardar el préstamo.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        JOptionPane.showMessageDialog(this, "Prestamo guardado exitosamente!");
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el préstamo.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-       frmInicioUsuario InicioUsuarioFrame= new frmInicioUsuario();
-       InicioUsuarioFrame.setVisible(true);
-       this.dispose();
+        frmInicioUsuario InicioUsuarioFrame = new frmInicioUsuario();
+        InicioUsuarioFrame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
 
@@ -209,10 +259,13 @@ try {
     private javax.swing.JTextField campoTextoFecha;
     private javax.swing.JTextField campoTextoMonto;
     private javax.swing.JTextField campoTextoParcialidades;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel jblFecha;
     private javax.swing.JLabel jblMonto;
     private javax.swing.JLabel jblParcialidades;
     // End of variables declaration//GEN-END:variables
+
 }

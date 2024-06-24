@@ -7,36 +7,52 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class PrestamoDAO implements AutoCloseable {
-    private EntityManagerFactory emf;
-    private EntityManager em;
+public class PrestamoDAO implements IPrestamoDAO {
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_unit_name");
 
-    public PrestamoDAO() {
-        this.emf = Persistence.createEntityManagerFactory("com.mycompany_pagoBeneficiariosPersistencia_jar_1.0-SNAPSHOTPU");
-        this.em = emf.createEntityManager();
-    }
-
-    public void guardarPrestamo(PrestamoEntidad prestamo) {
+    @Override
+    public void crear(PrestamoEntidad prestamo) {
+        EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(prestamo);
         em.getTransaction().commit();
-    }
-
-    public PrestamoEntidad obtenerPrestamoPorId(Long id) {
-        return em.find(PrestamoEntidad.class, id);
-    }
-
-    public List<PrestamoEntidad> obtenerTodosLosPrestamos() {
-        return em.createQuery("from PrestamoEntidad", PrestamoEntidad.class).getResultList();
+        em.close();
     }
 
     @Override
-    public void close() {
-        if (em != null) {
-            em.close();
+    public PrestamoEntidad obtenerPorId(Long id) {
+        EntityManager em = emf.createEntityManager();
+        PrestamoEntidad prestamo = em.find(PrestamoEntidad.class, id);
+        em.close();
+        return prestamo;
+    }
+
+    @Override
+    public List<PrestamoEntidad> obtenerTodos() {
+        EntityManager em = emf.createEntityManager();
+        List<PrestamoEntidad> prestamos = em.createQuery("SELECT p FROM PrestamoEntidad p", PrestamoEntidad.class).getResultList();
+        em.close();
+        return prestamos;
+    }
+
+    @Override
+    public void actualizar(PrestamoEntidad prestamo) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(prestamo);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        EntityManager em = emf.createEntityManager();
+        PrestamoEntidad prestamo = em.find(PrestamoEntidad.class, id);
+        if (prestamo != null) {
+            em.getTransaction().begin();
+            em.remove(prestamo);
+            em.getTransaction().commit();
         }
-        if (emf != null) {
-            emf.close();
-        }
+        em.close();
     }
 }

@@ -2,7 +2,6 @@ utilerias\ClaveContratoGenerator.class
 GUI\frmInicioUsuario$4.class
 GUI\frmNuevoPago$1.class
 GUI\frmAdministrarCuentas$4.class
-GUI\frmIniciarSesion$4.class
 GUI\frmInicioAdmin.class
 utilerias\Utilidades.class
 GUI\frmInicioUsuario.class
@@ -38,10 +37,10 @@ GUI\frmAdministrarPagos.class
 GUI\frmAdministrarBeneficiarios$1.class
 GUI\frmIniciarSesion.class
 GUI\frmInicioUsuario$3.class
+GUI\frmNuevoPago$3.class
 GUI\frmCambiarEstatus.class
 GUI\frmAdministrarBeneficiarios$4.class
 GUI\frmAdministrarCuentas$5.class
-GUI\frmIniciarSesion$5.class
 utilerias\JButtonCell.class
 GUI\frmRegistrarBeneficiario.class
 utilerias\JButtonRenderer.class
@@ -58,3 +57,4 @@ GUI\frmAdministrarPagos$3.class
 GUI\frmAdministrarAbonos$1.class
 GUI\frmCambiarEstatus$6.class
 utilerias\Convertidor.class
+GUI\frmNuevoPago$4.class

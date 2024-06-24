@@ -32,18 +32,6 @@ public class frmIniciarSesion extends javax.swing.JFrame {
        initComponents();
         campoTextoUsuario1.setEditable(true);
         
-        // Agregar ActionListener al botón Administrador
-        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminActionPerformed(evt);
-            }
-        });
-         // Agregar ActionListener al botón Ingresar
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
-            }
-        });
         // Agregar un WindowListener para detectar cuando la ventana se abre
     addWindowListener(new WindowAdapter() {
         @Override
