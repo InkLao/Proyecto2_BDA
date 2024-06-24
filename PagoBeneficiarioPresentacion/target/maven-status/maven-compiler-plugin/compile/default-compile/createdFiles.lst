@@ -11,7 +11,6 @@ utilerias\ComboItems.class
 GUI\frmAdministrarBeneficiarios$2.class
 GUI\frmInicioUsuario$1.class
 GUI\frmInicioAdmin$1.class
-GUI\frmAdministrarAbonos$5.class
 GUI\frmNuevoPago$5.class
 GUI\frmCambiarEstatus$2.class
 GUI\frmAdministrarBeneficiarios.class
@@ -22,11 +21,13 @@ GUI\frmCambiarEstatus$4.class
 GUI\frmAdministrarBeneficiarios$3.class
 GUI\frmIniciarSesion$3.class
 GUI\dlgRegistrarBeneficiario.class
+GUI\frmCambiarMensaje$4.class
 GUI\frmNuevoPago$2.class
 GUI\frmAdministrarCuentas$3.class
 GUI\dlgRegistrarCuenta$1.class
 GUI\frmAdministrarPagos$1.class
 GUI\frmCambiarEstatus$1.class
+GUI\frmCambiarMensaje$1.class
 GUI\frmAdministrarCuentas.class
 GUI\frmInicioAdmin$2.class
 GUI\frmAdministrarAbonos$3.class
@@ -45,6 +46,7 @@ GUI\frmNuevoPago$3.class
 GUI\frmCambiarEstatus.class
 GUI\frmAdministrarBeneficiarios$4.class
 GUI\frmAdministrarCuentas$5.class
+GUI\frmCambiarMensaje$3.class
 utilerias\JButtonCell.class
 GUI\frmRegistrarBeneficiario.class
 utilerias\JButtonRenderer.class
@@ -54,12 +56,14 @@ GUI\frmAdministrarAbonos$4.class
 GUI\dlgRegistrarBeneficiario$1.class
 com\mycompany\pagobeneficiariopresentacion\PagoBeneficiarioPresentacion.class
 GUI\frmNuevoPago.class
+GUI\frmCambiarMensaje$2.class
 GUI\frmIniciarSesion$1.class
 GUI\frmCambiarEstatus$ComboBoxRenderer.class
 GUI\frmInicioUsuario$2.class
 GUI\dlgRegistrarCuenta.class
 GUI\frmAdministrarCuentas$1.class
 GUI\frmAdministrarPagos$3.class
+GUI\frmCambiarMensaje.class
 GUI\frmAdministrarAbonos$1.class
 GUI\frmCambiarEstatus$6.class
 utilerias\Convertidor.class
