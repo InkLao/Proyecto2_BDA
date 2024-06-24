@@ -24,6 +24,7 @@ GUI\frmNuevoPago$2.class
 GUI\frmAdministrarCuentas$3.class
 GUI\frmAdministrarPagos$1.class
 GUI\frmCambiarEstatus$1.class
+GUI\frmIniciarSesion$6.class
 GUI\frmAdministrarCuentas.class
 GUI\frmInicioAdmin$2.class
 GUI\frmAdministrarAbonos$3.class
