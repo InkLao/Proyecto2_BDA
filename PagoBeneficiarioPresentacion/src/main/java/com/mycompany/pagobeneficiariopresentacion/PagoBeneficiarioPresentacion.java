@@ -4,6 +4,8 @@
 
 package com.mycompany.pagobeneficiariopresentacion;
 
+import GUI.frmInicioUsuario;
+
 /**
  *
  * @author Arturo ITSON
@@ -11,6 +13,8 @@ package com.mycompany.pagobeneficiariopresentacion;
 public class PagoBeneficiarioPresentacion {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
+        
+        frmInicioUsuario is = new frmInicioUsuario();
+        is.setVisible(true);
+}
 }
