@@ -39,6 +39,7 @@ GUI\frmAdministrarBeneficiarios$1.class
 GUI\frmIniciarSesion.class
 GUI\frmInicioUsuario$3.class
 GUI\frmCambiarEstatus.class
+GUI\frmAdministrarBeneficiarios$4.class
 GUI\frmAdministrarCuentas$5.class
 GUI\frmIniciarSesion$5.class
 utilerias\JButtonCell.class
