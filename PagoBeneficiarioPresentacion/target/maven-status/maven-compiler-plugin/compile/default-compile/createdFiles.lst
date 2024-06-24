@@ -7,9 +7,7 @@ utilerias\Utilidades.class
 GUI\frmInicioUsuario.class
 utilerias\ComboItems.class
 GUI\frmAdministrarBeneficiarios$2.class
-GUI\frmInicioAdmin$4.class
 GUI\frmInicioUsuario$1.class
-GUI\frmAdministrarBeneficiarios$6.class
 GUI\frmInicioAdmin$1.class
 GUI\frmAdministrarAbonos$5.class
 GUI\frmAdministrarPagos$4.class
@@ -24,7 +22,6 @@ GUI\frmAdministrarBeneficiarios$3.class
 GUI\frmIniciarSesion$3.class
 GUI\frmNuevoPago$2.class
 GUI\frmAdministrarCuentas$3.class
-GUI\frmInicioAdmin$5.class
 GUI\frmAdministrarPagos$1.class
 GUI\frmAdministrarAbonos$6.class
 GUI\frmCambiarEstatus$1.class
@@ -56,9 +53,7 @@ GUI\frmInicioUsuario$5.class
 GUI\frmAdministrarAbonos$4.class
 com\mycompany\pagobeneficiariopresentacion\PagoBeneficiarioPresentacion.class
 GUI\frmAdministrarCuentas$7.class
-Dtos\BeneficiariosDTO.class
 GUI\frmNuevoPago.class
-GUI\frmAdministrarBeneficiarios$5.class
 GUI\frmIniciarSesion$1.class
 GUI\frmInicioUsuario$2.class
 GUI\frmAdministrarCuentas$1.class

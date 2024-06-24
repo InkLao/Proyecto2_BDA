@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import Dtos.BeneficiariosDTO;
+import DTO.BeneficiarioDTO;
 import excepciones.NegocioException;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,24 +21,14 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
     
     private IBeneficiarioNegocio negocio = new BeneficiarioNegocio();
 
-    frmInicioAdmin regresar = new frmInicioAdmin();
+
+
     public frmAdministrarBeneficiarios() {
         initComponents();
         
         cargarMetodosIniciales();
         
-         // Agregar ActionListener 
-        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 btnRegresarActionPerformed(evt);
-            }
-        });
-         // Agregar ActionListener 
-       btnNuevoRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoRegistroActionPerformed(evt);
-            }
-        });
+
       
     }
 
@@ -82,7 +72,7 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
         int id = this.getIdSeleccionadoTablaBeneficiarios();
     }
 
-    private void llenarTablaBeneficiarios(List<BeneficiariosDTO> beneficiariosLista) {
+    private void llenarTablaBeneficiarios(List<BeneficiarioDTO> beneficiariosLista) {
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblBeneficiarios.getModel();
 
         if (modeloTabla.getRowCount() > 0) {
@@ -107,7 +97,7 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
 
     private void cargarBeneficiariosEnTabla() {
         try {
-            List<BeneficiariosDTO> beneficiarios = this.negocio.buscarBeneficiarioTabla();
+            List<BeneficiarioDTO> beneficiarios = this.negocio.buscarBeneficiarioTabla();
             this.llenarTablaBeneficiarios(beneficiarios);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
@@ -225,7 +215,7 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-         frmInicioAdmin adminFrame = new frmInicioAdmin();
+        frmInicioAdmin adminFrame = new frmInicioAdmin();
         adminFrame.setVisible(true);
         this.dispose(); 
     }//GEN-LAST:event_btnRegresarActionPerformed

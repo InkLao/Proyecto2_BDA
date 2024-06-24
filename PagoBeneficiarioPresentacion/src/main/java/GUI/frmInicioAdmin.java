@@ -13,18 +13,7 @@ public class frmInicioAdmin extends javax.swing.JFrame {
    
     public frmInicioAdmin() {
         initComponents();
-         // Agregar ActionListener 
-        btnAdministrarBeneficiario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdministrarBeneficiarioActionPerformed(evt);
-            }
-        });
-        // Agregar ActionListener
-       btnVerInformacionEstatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerInformacionEstatusActionPerformed(evt);
-            }
-        });
+
     }
 
     /**
