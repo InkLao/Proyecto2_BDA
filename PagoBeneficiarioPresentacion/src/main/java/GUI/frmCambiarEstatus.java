@@ -4,7 +4,14 @@
  */
 package GUI;
 
+import java.awt.Component;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -12,12 +19,10 @@ import javax.swing.JOptionPane;
  */
 public class frmCambiarEstatus extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmCambiarEstatus
-     */
+  private DefaultTableModel tableModel; // Define el modelo de tabla para jTable2
     public frmCambiarEstatus() {
-        initComponents();
-           // Agregar ActionListener 
+ initComponents();
+       
         btnVerRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                  btnVerRegresarActionPerformed(evt);
@@ -29,6 +34,32 @@ public class frmCambiarEstatus extends javax.swing.JFrame {
                 btnVerGuardarActionPerformed(evt);
             }
         });
+         // Inicializa el modelo de jTable2 con datos (para demostración)
+        Object[][] data = {
+            {1, "Cuenta1", 100.0, 2, "2023-01-01 10:00", "Creado"},
+            {2, "Cuenta2", 200.0, 3, "2023-02-02 11:00", "Creado"}
+        };
+        String[] columns = {"Id Pago", "Cuenta", "Monto", "No. Parcialidades", "Fecha - Hora", "Estado Actual", "Cambiar Estado"};
+        tableModel = new DefaultTableModel(data, columns) {
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                if (columnIndex == 6) {
+                    return JComboBox.class; // Retorna la clase JComboBox para la columna "Cambiar Estado"
+                }
+                return super.getColumnClass(columnIndex);
+            }
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 6; // Solo la columna "Cambiar Estado" es editable
+            }
+        };
+        jTable2.setModel(tableModel);
+        // Configura un editor de combo box personalizado para la columna "Cambiar Estado"
+        TableColumn cambiarEstadoColumn = jTable2.getColumnModel().getColumn(6);
+        cambiarEstadoColumn.setCellEditor(new DefaultCellEditor(createComboBox()));
+        // Configura un renderizador personalizado para mostrar el combo box en las celdas de la tabla
+        cambiarEstadoColumn.setCellRenderer((TableCellRenderer) new ComboBoxRenderer());
     }
 
     /**
@@ -164,6 +195,28 @@ public class frmCambiarEstatus extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+// Método auxiliar para crear un combo box con las opciones especificadas
+    private JComboBox<String> createComboBox() {
+        JComboBox<String> comboBox = new JComboBox<>();
+        comboBox.addItem("Autorizado");
+        comboBox.addItem("Rechazado");
+        comboBox.addItem("Modificado");
+        comboBox.addItem("Completado");
+        comboBox.addItem("Pagado");
+        return comboBox;
+    }
+  
+// Renderizador personalizado para mostrar el combo box en las celdas de la tabla
+    class ComboBoxRenderer extends JComboBox<String> implements TableCellRenderer {
+        public ComboBoxRenderer() {
+            setOpaque(true);
+        } 
+@Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            setSelectedItem(value);
+            return this;
+        }
+    }
 
     private void btnVerGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerGuardarActionPerformed
          JOptionPane.showMessageDialog(null, "Se guardó correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);

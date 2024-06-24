@@ -4,6 +4,7 @@ GUI\frmNuevoPago$1.class
 GUI\frmAdministrarCuentas$4.class
 GUI\frmInicioAdmin.class
 utilerias\Utilidades.class
+GUI\dlgRegistrarCuenta$2.class
 GUI\frmInicioUsuario.class
 utilerias\ComboItems.class
 GUI\frmAdministrarBeneficiarios$2.class
@@ -21,9 +22,10 @@ GUI\frmIniciarSesion$3.class
 GUI\dlgRegistrarBeneficiario.class
 GUI\frmNuevoPago$2.class
 GUI\frmAdministrarCuentas$3.class
+GUI\dlgRegistrarCuenta$1.class
 GUI\frmAdministrarPagos$1.class
 GUI\frmCambiarEstatus$1.class
-GUI\frmAdministrarCuentas$6.class
+GUI\frmIniciarSesion$6.class
 GUI\frmAdministrarCuentas.class
 GUI\frmInicioAdmin$2.class
 GUI\frmAdministrarAbonos$3.class
@@ -32,6 +34,7 @@ GUI\frmAdministrarCuentas$2.class
 GUI\frmIniciarSesion$2.class
 GUI\frmCambiarEstatus$3.class
 GUI\frmAdministrarAbonos.class
+GUI\frmCambiarEstatus$7.class
 GUI\dlgRegistrarBeneficiario$2.class
 GUI\frmAdministrarPagos.class
 GUI\frmAdministrarBeneficiarios$1.class
@@ -48,10 +51,11 @@ GUI\frmInicioUsuario$5.class
 GUI\frmAdministrarAbonos$4.class
 GUI\dlgRegistrarBeneficiario$1.class
 com\mycompany\pagobeneficiariopresentacion\PagoBeneficiarioPresentacion.class
-GUI\frmAdministrarCuentas$7.class
 GUI\frmNuevoPago.class
 GUI\frmIniciarSesion$1.class
+GUI\frmCambiarEstatus$ComboBoxRenderer.class
 GUI\frmInicioUsuario$2.class
+GUI\dlgRegistrarCuenta.class
 GUI\frmAdministrarCuentas$1.class
 GUI\frmAdministrarPagos$3.class
 GUI\frmAdministrarAbonos$1.class

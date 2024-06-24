@@ -31,6 +31,7 @@ public class frmIniciarSesion extends javax.swing.JFrame {
     public frmIniciarSesion() {
        initComponents();
         campoTextoUsuario1.setEditable(true);
+        campoTextoContraseña.setText("");
         
         // Agregar un WindowListener para detectar cuando la ventana se abre
     addWindowListener(new WindowAdapter() {
@@ -44,17 +45,13 @@ public class frmIniciarSesion extends javax.swing.JFrame {
 
       
     }
-
-    public String getUsuario() {
+public String getUsuario() {
         return campoTextoUsuario1.getText();
     }
 
-    public String getContrasena() {
-        return campoTextoContraseña.getText();
-    }
-
-    public JTextField getCampoTextoContraseña() {
-        return campoTextoContraseña;
+    public char[] getContrasena() {
+        // Obtener el texto del campo de contraseña como un arreglo de caracteres
+        return campoTextoContraseña.getPassword();
     }
 
 
@@ -69,19 +66,17 @@ public class frmIniciarSesion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        campoTextoContraseña = new javax.swing.JTextField();
         campoTextoUsuario1 = new javax.swing.JTextField();
         jblUsuario = new javax.swing.JLabel();
         jblContraseña = new javax.swing.JLabel();
         btnAdmin = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
+        campoTextoContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar Sesion");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        campoTextoContraseña.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         campoTextoUsuario1.setForeground(new java.awt.Color(255, 255, 255));
         campoTextoUsuario1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -116,6 +111,13 @@ public class frmIniciarSesion extends javax.swing.JFrame {
             }
         });
 
+        campoTextoContraseña.setText("jPasswordField1");
+        campoTextoContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTextoContraseñaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,16 +126,16 @@ public class frmIniciarSesion extends javax.swing.JFrame {
                 .addContainerGap(206, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(campoTextoUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoTextoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(195, 195, 195))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(299, 299, 299))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jblContraseña)
-                        .addGap(284, 284, 284))))
+                        .addGap(284, 284, 284))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(campoTextoUsuario1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                            .addComponent(campoTextoContraseña))
+                        .addGap(195, 195, 195))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,8 +153,8 @@ public class frmIniciarSesion extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(campoTextoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addComponent(campoTextoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,10 +204,14 @@ public class frmIniciarSesion extends javax.swing.JFrame {
         this.dispose(); 
     }//GEN-LAST:event_btnAdminActionPerformed
 
+    private void campoTextoContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTextoContraseñaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JTextField campoTextoContraseña;
+    private javax.swing.JPasswordField campoTextoContraseña;
     private javax.swing.JTextField campoTextoUsuario1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jblContraseña;
