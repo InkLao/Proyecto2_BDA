@@ -25,7 +25,6 @@ GUI\frmAdministrarCuentas$3.class
 GUI\dlgRegistrarCuenta$1.class
 GUI\frmAdministrarPagos$1.class
 GUI\frmCambiarEstatus$1.class
-GUI\frmIniciarSesion$6.class
 GUI\frmAdministrarCuentas.class
 GUI\frmInicioAdmin$2.class
 GUI\frmAdministrarAbonos$3.class
@@ -47,6 +46,7 @@ GUI\frmAdministrarCuentas$5.class
 utilerias\JButtonCell.class
 GUI\frmRegistrarBeneficiario.class
 utilerias\JButtonRenderer.class
+GUI\frmInicioAdmin$3.class
 GUI\frmInicioUsuario$5.class
 GUI\frmAdministrarAbonos$4.class
 GUI\dlgRegistrarBeneficiario$1.class

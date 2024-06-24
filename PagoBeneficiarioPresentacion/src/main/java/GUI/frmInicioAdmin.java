@@ -13,7 +13,12 @@ public class frmInicioAdmin extends javax.swing.JFrame {
    
     public frmInicioAdmin() {
         initComponents();
-
+// Agregar ActionListener al botón Administrador
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 btnCerrarSesionoActionPerformed(evt);
+            }
+        });
     }
 
     /**
@@ -170,8 +175,8 @@ public class frmInicioAdmin extends javax.swing.JFrame {
         this.dispose(); 
     }//GEN-LAST:event_btnAdministrarBeneficiarioActionPerformed
    private void btnCerrarSesionoActionPerformed(java.awt.event.ActionEvent evt) {                                                           
-     frmIniciarSesion adminFrame = new frmIniciarSesion();
-        adminFrame.setVisible(true);
+     frmIniciarSesion cerrarSesion = new frmIniciarSesion();
+        cerrarSesion.setVisible(true);
         this.dispose(); 
     }  
 
