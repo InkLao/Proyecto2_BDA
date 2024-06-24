@@ -24,7 +24,6 @@ GUI\frmNuevoPago$2.class
 GUI\frmAdministrarCuentas$3.class
 GUI\frmAdministrarPagos$1.class
 GUI\frmCambiarEstatus$1.class
-GUI\frmAdministrarCuentas$6.class
 GUI\frmAdministrarCuentas.class
 GUI\frmInicioAdmin$2.class
 GUI\frmAdministrarAbonos$3.class
@@ -49,7 +48,6 @@ GUI\frmInicioUsuario$5.class
 GUI\frmAdministrarAbonos$4.class
 GUI\dlgRegistrarBeneficiario$1.class
 com\mycompany\pagobeneficiariopresentacion\PagoBeneficiarioPresentacion.class
-GUI\frmAdministrarCuentas$7.class
 GUI\frmNuevoPago.class
 GUI\frmIniciarSesion$1.class
 GUI\frmInicioUsuario$2.class
