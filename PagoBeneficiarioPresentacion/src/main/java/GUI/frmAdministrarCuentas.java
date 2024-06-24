@@ -4,7 +4,13 @@
  */
 package GUI;
 
+import DTO.CuentaBancariaDTO;
+import excepciones.NegocioException;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import negocio.CuentaBancariaNegocio;
+import negocio.ICuentaBancariaNegocio;
 
 /**
  *
@@ -12,11 +18,20 @@ import javax.swing.JOptionPane;
  */
 public class frmAdministrarCuentas extends javax.swing.JFrame {
 
+    
+    private ICuentaBancariaNegocio negocio = new CuentaBancariaNegocio();
+
+    
     /**
      * Creates new form frmAdministrarCuentas
      */
     public frmAdministrarCuentas() {
         initComponents();
+        
+        cargarMetodosIniciales();
+
+        
+        
                // Agregar ActionListener al botón Administrador
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -36,6 +51,86 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
             }
         });
     }
+    
+        private void cargarMetodosIniciales(){
+        this.cargarConfiguracionInicialTablaCuentas();
+        this.cargarCuentaEnTabla();
+    
+
+        
+    }
+    
+    
+     private void cargarConfiguracionInicialTablaCuentas() {
+        final int columnaId = 0;
+
+    } 
+    
+    
+    private int getIdSeleccionadoTablaCuentas() {
+        int indiceFilaSeleccionada = this.tblCuentas.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblCuentas.getModel();
+            int indiceColumnaId = 0;
+            int idCuentaSeleccionado = (int) modelo.getValueAt(indiceFilaSeleccionada,
+                    indiceColumnaId);
+            return idCuentaSeleccionado;
+        } else {
+            return 0;
+        }
+    }
+
+    private void editar() {
+        //Metodo para regresar el alumno seleccionado
+        int id = this.getIdSeleccionadoTablaCuentas();
+
+    }
+
+    private void eliminar() {
+        //Metodo para regresar el alumno seleccionado
+        int id = this.getIdSeleccionadoTablaCuentas();
+    }
+
+    private void llenarTablaBeneficiarios(List<CuentaBancariaDTO> cuentasLista) {
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblCuentas.getModel();
+
+        if (modeloTabla.getRowCount() > 0) {
+            for (int i = modeloTabla.getRowCount() - 1; i > -1; i--) {
+                modeloTabla.removeRow(i);
+            }
+        }
+
+        if (cuentasLista != null) {
+            cuentasLista.forEach(row -> {
+                Object[] fila = new Object[6];
+                fila[0] = row.getId();
+                fila[1] = row.getNumeroDeCuenta();
+                fila[2] = row.getClabe();
+                fila[3] = row.getBanco();
+                fila[4] = row.getBeneficiarioId();
+                fila[5] = row.getEliminada();
+                modeloTabla.addRow(fila);
+            });
+        }
+    }
+
+    private void cargarCuentaEnTabla() {
+        try {
+            List<CuentaBancariaDTO> beneficiarios = this.negocio.buscarCuentaTabla();
+            this.llenarTablaBeneficiarios(beneficiarios);
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
+    
+    private void convertirABeneficiarioDTO(){
+    
+    }
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,17 +162,17 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
         tblCuentas.setBackground(new java.awt.Color(225, 225, 225));
         tblCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Numero de Cuenta", "Clave", "Banco", "Editar", "Eliminar"
+                "ID", "Numero de Cuenta", "Clave", "Banco", "Id Beneficiario", "Eliminada", "Editar", "Eliminar"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -88,7 +183,6 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
 
         btnRegresar.setBackground(new java.awt.Color(23, 154, 249));
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnRegresar.setForeground(new java.awt.Color(0, 0, 0));
         btnRegresar.setText("Regresar");
         btnRegresar.setBorder(null);
         btnRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -100,7 +194,6 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
 
         btnNuevoRegistro.setBackground(new java.awt.Color(23, 154, 249));
         btnNuevoRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnNuevoRegistro.setForeground(new java.awt.Color(0, 0, 0));
         btnNuevoRegistro.setText("Nuevo Registro");
         btnNuevoRegistro.setBorder(null);
         btnNuevoRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -111,32 +204,25 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
         });
 
         jblNumeroCuenta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblNumeroCuenta.setForeground(new java.awt.Color(0, 0, 0));
         jblNumeroCuenta.setText("Numero de cuenta");
 
         jblClave.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblClave.setForeground(new java.awt.Color(0, 0, 0));
         jblClave.setText("Clave");
 
         jblBanco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblBanco.setForeground(new java.awt.Color(0, 0, 0));
         jblBanco.setText("Banco");
 
         campoTextoNumeroCuenta.setBackground(new java.awt.Color(225, 225, 225));
-        campoTextoNumeroCuenta.setForeground(new java.awt.Color(0, 0, 0));
         campoTextoNumeroCuenta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         campoTextoClave.setBackground(new java.awt.Color(225, 225, 225));
-        campoTextoClave.setForeground(new java.awt.Color(0, 0, 0));
         campoTextoClave.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         campoTextoBanco.setBackground(new java.awt.Color(225, 225, 225));
-        campoTextoBanco.setForeground(new java.awt.Color(0, 0, 0));
         campoTextoBanco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnGuardar.setBackground(new java.awt.Color(51, 255, 51));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(0, 0, 0));
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(null);
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

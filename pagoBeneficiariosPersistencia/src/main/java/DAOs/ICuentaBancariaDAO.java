@@ -6,6 +6,7 @@ package DAOs;
 
 import entidades.CuentaBancariaEntidad;
 import java.util.List;
+import javax.persistence.PersistenceException;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.List;
 public interface ICuentaBancariaDAO {
     void crear(CuentaBancariaEntidad cuentaBancaria);
     CuentaBancariaEntidad obtenerPorId(Long id);
-    List<CuentaBancariaEntidad> obtenerTodos();
+    List<CuentaBancariaEntidad> obtenerTodos() throws PersistenceException;
     void actualizar(CuentaBancariaEntidad cuentaBancaria);
     void eliminar(Long id);
 }

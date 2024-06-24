@@ -4,11 +4,14 @@
  */
 package negocio;
 
+import DAOs.CuentaBancariaDAO;
 import DAOs.ICuentaBancariaDAO;
 import DTO.CuentaBancariaDTO;
 import entidades.BeneficiarioEntidad;
 import entidades.CuentaBancariaEntidad;
 import excepciones.NegocioException;
+import excepciones.PersistenciaException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,11 +20,18 @@ import java.util.stream.Collectors;
  * @author eduar
  */
 public class CuentaBancariaNegocio implements ICuentaBancariaNegocio{
-    private ICuentaBancariaDAO cuentaBancariaDAO;
+    
+    private ICuentaBancariaDAO cuentaBancariaDAO = new CuentaBancariaDAO();
 
     public CuentaBancariaNegocio(ICuentaBancariaDAO cuentaBancariaDAO) {
         this.cuentaBancariaDAO = cuentaBancariaDAO;
     }
+
+    
+    public CuentaBancariaNegocio() {
+    }
+    
+    
 
     @Override
     public void crear(CuentaBancariaDTO cuentaBancaria) throws NegocioException {
@@ -92,4 +102,34 @@ public class CuentaBancariaNegocio implements ICuentaBancariaNegocio{
             throw new NegocioException("Error al eliminar la cuenta bancaria", e);
         }
     }
+    
+    
+    
+    @Override
+    public List<CuentaBancariaDTO> buscarCuentaTabla() throws NegocioException {
+        List<CuentaBancariaEntidad> cuentas = this.cuentaBancariaDAO.obtenerTodos();
+        return this.convertirCuentaDTO(cuentas);
+    }    
+    
+    private List<CuentaBancariaDTO> convertirCuentaDTO(List<CuentaBancariaEntidad> cuentas) throws NegocioException {
+        if (cuentas == null) {
+            throw new NegocioException("No se pudieron obtener los benefeficiarios. No hay registros.");
+        }
+        
+            List<CuentaBancariaDTO> cuentaBancariaDTO = new ArrayList<>();
+        for (CuentaBancariaEntidad cuenta : cuentas) {
+            CuentaBancariaDTO dto = new CuentaBancariaDTO();
+            dto.setBanco(cuenta.getBanco());
+            dto.setBeneficiarioId(cuenta.getBeneficiario().getId());
+            dto.setClabe(cuenta.getClabe());
+            dto.setEliminada(cuenta.getEliminada());
+            dto.setId(cuenta.getId());
+            dto.setNumeroDeCuenta(cuenta.getNumeroDeCuenta());
+
+            cuentaBancariaDTO.add(dto);
+        }
+        return cuentaBancariaDTO;
+    }      
+    
+    
 }

@@ -9,13 +9,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
 
 /**
  *
  * @author eduar
  */
 public class CuentaBancariaDAO implements ICuentaBancariaDAO{
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_unit_name");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_pagoBeneficiariosPersistencia_jar_1.0-SNAPSHOTPU");
 
     @Override
     public void crear(CuentaBancariaEntidad cuentaBancaria) {
@@ -35,7 +36,7 @@ public class CuentaBancariaDAO implements ICuentaBancariaDAO{
     }
 
     @Override
-    public List<CuentaBancariaEntidad> obtenerTodos() {
+    public List<CuentaBancariaEntidad> obtenerTodos() throws PersistenceException{
         EntityManager em = emf.createEntityManager();
         List<CuentaBancariaEntidad> cuentasBancarias = em.createQuery("SELECT c FROM CuentaBancariaEntidad c", CuentaBancariaEntidad.class).getResultList();
         em.close();

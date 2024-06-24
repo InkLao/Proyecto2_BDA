@@ -18,4 +18,6 @@ public interface ICuentaBancariaNegocio {
     List<CuentaBancariaDTO> obtenerTodos() throws NegocioException;
     void actualizar(CuentaBancariaDTO cuentaBancaria) throws NegocioException;
     void eliminar(Long id) throws NegocioException;
+    public List<CuentaBancariaDTO> buscarCuentaTabla() throws NegocioException;
+
 }

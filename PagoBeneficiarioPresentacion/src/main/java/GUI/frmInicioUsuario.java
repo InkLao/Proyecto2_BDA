@@ -172,8 +172,8 @@ public class frmInicioUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdministrarCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarCuentasActionPerformed
-    frmAdministrarCuentas adminFrame = new  frmAdministrarCuentas();
-        adminFrame.setVisible(true);
+    frmAdministrarCuentas cuentas = new  frmAdministrarCuentas();
+        cuentas.setVisible(true);
         this.dispose();
 
         
