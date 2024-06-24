@@ -4,7 +4,7 @@
 
 package com.mycompany.pagobeneficiariopresentacion;
 
-import GUI.frmInicioUsuario;
+import GUI.frmIniciarSesion;
 
 /**
  *
@@ -14,7 +14,7 @@ public class PagoBeneficiarioPresentacion {
 
     public static void main(String[] args) {
         
-        frmInicioUsuario is = new frmInicioUsuario();
+        frmIniciarSesion is = new frmIniciarSesion();
         is.setVisible(true);
 }
 }
