@@ -26,66 +26,53 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
     
     private ICuentaBancariaNegocio negocio = new CuentaBancariaNegocio();
 
-    
     /**
      * Creates new form frmAdministrarCuentas
      */
     public frmAdministrarCuentas() {
         initComponents();
-        
         cargarMetodosIniciales();
-
     }
-    
-        private void cargarMetodosIniciales(){
+
+    private void cargarMetodosIniciales() {
         this.cargarConfiguracionInicialTablaCuentas();
         this.cargarCuentaEnTabla();
-    
+    }
 
-        
-    }
-        
-    private void editarCuentaTabla(CuentaBancariaDTO cuenta){
-        try{
-        this.negocio.actualizar(cuenta);
-        JOptionPane.showMessageDialog(this, "cuenta editada");
+    private void editarCuentaTabla(CuentaBancariaDTO cuenta) {
+        try {
+            this.negocio.actualizar(cuenta);
+            JOptionPane.showMessageDialog(this, "Cuenta editada");
         } catch (NegocioException ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
         }
-        
     }
-    
-    private void eliminarCuentaTabla(long val1){
-        try{
-        this.negocio.eliminar((long)val1);
-        JOptionPane.showMessageDialog(this, "Cuenta Eliminado");
+
+    private void eliminarCuentaTabla(long val1) {
+        try {
+            this.negocio.eliminar((long) val1);
+            JOptionPane.showMessageDialog(this, "Cuenta Eliminada");
         } catch (NegocioException ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
         }
-        
-    }     
-    
-    
-     private void cargarConfiguracionInicialTablaCuentas() {
+    }
+
+    private void cargarConfiguracionInicialTablaCuentas() {
         ActionListener onEditarClickListener = new ActionListener() {
             final int columnaId = 0;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
                 editar();
-                
-            }               
+            }
         };
-            
-        
+
         int indiceColumnaEditar = 6;
         TableColumnModel modeloColumnas = this.tblCuentas.getColumnModel();
         modeloColumnas.getColumn(indiceColumnaEditar)
                 .setCellRenderer(new JButtonRenderer("Editar"));
         modeloColumnas.getColumn(indiceColumnaEditar)
-                .setCellEditor(new JButtonCellEditor("Editar",
-                        onEditarClickListener));
+                .setCellEditor(new JButtonCellEditor("Editar", onEditarClickListener));
 
         ActionListener onEliminarClickListener = new ActionListener() {
             final int columnaId = 0;
@@ -101,32 +88,28 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
         modeloColumnas.getColumn(indiceColumnaEliminar)
                 .setCellRenderer(new JButtonRenderer("Eliminar"));
         modeloColumnas.getColumn(indiceColumnaEliminar)
-                .setCellEditor(new JButtonCellEditor("Eliminar",
-                        onEliminarClickListener));
+                .setCellEditor(new JButtonCellEditor("Eliminar", onEliminarClickListener));
 
-    } 
-    
-    
+    }
+
     private long getIdSeleccionadoTablaCuentas() {
         int indiceFilaSeleccionada = this.tblCuentas.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblCuentas.getModel();
             int indiceColumnaId = 0;
-            long idCuentaSeleccionado = (long) modelo.getValueAt(indiceFilaSeleccionada,
-                    indiceColumnaId);
+            long idCuentaSeleccionado = (long) modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
             return idCuentaSeleccionado;
         } else {
             return 0;
         }
     }
-    
+
     private String getNumCuentaSeleccionadoTablaCuentas() {
         int indiceFilaSeleccionada = this.tblCuentas.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblCuentas.getModel();
             int indiceColumnaId = 1;
-            String numCuentaSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada,
-                    indiceColumnaId);
+            String numCuentaSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
             return numCuentaSeleccionado;
         } else {
             return null;
@@ -138,8 +121,7 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblCuentas.getModel();
             int indiceColumnaId = 2;
-            String claveCuentaSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada,
-                    indiceColumnaId);
+            String claveCuentaSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
             return claveCuentaSeleccionado;
         } else {
             return null;
@@ -151,8 +133,7 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblCuentas.getModel();
             int indiceColumnaId = 3;
-            String bancoCuentaSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada,
-                    indiceColumnaId);
+            String bancoCuentaSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
             return bancoCuentaSeleccionado;
         } else {
             return null;
@@ -164,8 +145,7 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblCuentas.getModel();
             int indiceColumnaId = 4;
-            long idBeneficiarioSeleccionado = (long) modelo.getValueAt(indiceFilaSeleccionada,
-                    indiceColumnaId);
+            long idBeneficiarioSeleccionado = (long) modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
             return idBeneficiarioSeleccionado;
         } else {
             return 0;
@@ -177,24 +157,23 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblCuentas.getModel();
             int indiceColumnaId = 5;
-            boolean eliminadoSeleccionado = (boolean) modelo.getValueAt(indiceFilaSeleccionada,
-                    indiceColumnaId);
+            boolean eliminadoSeleccionado = (boolean) modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
             return eliminadoSeleccionado;
         } else {
             return false;
         }
-    }    
+    }
 
     private void editar() {
-        //Metodo para regresar el alumno seleccionado  
-        
+        //Metodo para regresar el alumno seleccionado
+
         long id = this.getIdSeleccionadoTablaCuentas();
         String numeroCuenta = this.getNumCuentaSeleccionadoTablaCuentas();
         String clave = this.getClaveSeleccionadoTablaCuentas();
         String banco = this.getBancoSeleccionadoTablaCuentas();
         long idBeneficiario = this.getIdBeneficiarioSeleccionadoTablaCuentas();
         boolean eliminado = this.getEliminadaSeleccionadoTablaCuentas();
-        
+
         CuentaBancariaDTO cuenta = new CuentaBancariaDTO();
         cuenta.setBanco(banco);
         cuenta.setBeneficiarioId(idBeneficiario);
@@ -202,17 +181,17 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
         cuenta.setEliminada(eliminado);
         cuenta.setId(id);
         cuenta.setNumeroDeCuenta(numeroCuenta);
-        
+
         editarCuentaTabla(cuenta);
-        
+
     }
 
     private void eliminar() {
         //Metodo para regresar el alumno seleccionado
         long id = this.getIdSeleccionadoTablaCuentas();
         eliminarCuentaTabla(id);
-        cargarMetodosIniciales();        
-        
+        cargarMetodosIniciales();
+
     }
 
     private void llenarTablaBeneficiarios(List<CuentaBancariaDTO> cuentasLista) {
@@ -245,10 +224,10 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
         }
-    }    
-    
-    private void convertirABeneficiarioDTO(){
-    
+    }
+
+    private void convertirABeneficiarioDTO() {
+
     }
     
     

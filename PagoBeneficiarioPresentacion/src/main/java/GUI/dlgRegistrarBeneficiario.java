@@ -18,12 +18,15 @@ import utilerias.ClaveContratoGenerator;
  */
 public class dlgRegistrarBeneficiario extends javax.swing.JDialog {
 
+    private IBeneficiarioNegocio beneficiarioNegocio;
+
     /**
      * Creates new form dlgRegistrarBeneficiario
      */
-    public dlgRegistrarBeneficiario() {
-        super();
+    public dlgRegistrarBeneficiario(java.awt.Frame parent, boolean modal, IBeneficiarioNegocio beneficiarioNegocio) {
+        super(parent, modal);
         initComponents();
+        this.beneficiarioNegocio = beneficiarioNegocio;
     }
 
     /**
@@ -181,46 +184,45 @@ public class dlgRegistrarBeneficiario extends javax.swing.JDialog {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         String nombres = campoTextoNombres.getText();
-    String apellidoPaterno = campoTextoApellidoPaterno.getText();
-    String apellidoMaterno = campoTextoApellidoMaterno.getText();
-    String usuario = campoTextoUsuario.getText();
-    String contrasena = campoTextoContrasena.getText();
-    String saldoStr = campoTextoSaldo.getText();
+        String apellidoPaterno = campoTextoApellidoPaterno.getText();
+        String apellidoMaterno = campoTextoApellidoMaterno.getText();
+        String usuario = campoTextoUsuario.getText();
+        String contrasena = campoTextoContrasena.getText();
+        String saldoStr = campoTextoSaldo.getText();
 
-    if (nombres.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty() || usuario.isEmpty() || contrasena.isEmpty() || saldoStr.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Todos los campos deben ser llenados", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        if (nombres.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty() || usuario.isEmpty() || contrasena.isEmpty() || saldoStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben ser llenados", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    double saldo;
-    try {
-        saldo = Double.parseDouble(saldoStr);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "El saldo debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        double saldo;
+        try {
+            saldo = Double.parseDouble(saldoStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El saldo debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Generar clave contrato al azar
-    String claveContrato = ClaveContratoGenerator.generate();
+        // Generar clave contrato al azar
+        String claveContrato = ClaveContratoGenerator.generate();
 
-    BeneficiarioDTO beneficiario = new BeneficiarioDTO();
-    beneficiario.setNombres(nombres);
-    beneficiario.setPaterno(apellidoPaterno);
-    beneficiario.setMaterno(apellidoMaterno);
-    beneficiario.setUsuario(usuario);
-    beneficiario.setContrasena(contrasena);
-    beneficiario.setSaldo(saldo);
-    beneficiario.setClaveContrato(claveContrato);
+        BeneficiarioDTO beneficiario = new BeneficiarioDTO();
+        beneficiario.setNombres(nombres);
+        beneficiario.setPaterno(apellidoPaterno);
+        beneficiario.setMaterno(apellidoMaterno);
+        beneficiario.setUsuario(usuario);
+        beneficiario.setContrasena(contrasena);
+        beneficiario.setSaldo(saldo);
+        beneficiario.setClaveContrato(claveContrato);
 
-    try {
-        IBeneficiarioNegocio beneficiarioNegocio = new BeneficiarioNegocio(new BeneficiarioDAO());
-        beneficiarioNegocio.crear(beneficiario);
-        JOptionPane.showMessageDialog(this, "Beneficiario guardado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    } catch (NegocioException e) {
-        JOptionPane.showMessageDialog(this, "Error al guardar el beneficiario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        try {
+            beneficiarioNegocio.crear(beneficiario);
+            JOptionPane.showMessageDialog(this, "Beneficiario guardado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar el beneficiario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed

@@ -16,77 +16,68 @@ import negocio.BeneficiarioNegocio;
 import negocio.IBeneficiarioNegocio;
 import utilerias.JButtonCellEditor;
 import utilerias.JButtonRenderer;
- 
 
 /**
  *
  * @author Arturo ITSON
  */
 public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
-    
+
     private IBeneficiarioNegocio negocio = new BeneficiarioNegocio();
-
-
 
     public frmAdministrarBeneficiarios() {
         initComponents();
-        
+        this.negocio=negocio;
         cargarMetodosIniciales();
-        
 
-      
     }
 
-    private void cargarMetodosIniciales(){
+    private void cargarMetodosIniciales() {
         this.cargarConfiguracionInicialTablaBeneficiarios();
         this.cargarBeneficiariosEnTabla();
-    
-        
+
     }
-    
-    
-    private void insertarBeneficiarioTabla(BeneficiarioDTO beneficiario){
-        try{
-        this.negocio.crear(beneficiario);
+
+    private void insertarBeneficiarioTabla(BeneficiarioDTO beneficiario) {
+        try {
+            this.negocio.crear(beneficiario);
         } catch (NegocioException ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    private void editarBeneficiarioTabla(BeneficiarioDTO beneficiario){
-        try{
-        this.negocio.actualizar(beneficiario);
-        JOptionPane.showMessageDialog(this, "Beneficiario editado");
+
+    private void editarBeneficiarioTabla(BeneficiarioDTO beneficiario) {
+        try {
+            this.negocio.actualizar(beneficiario);
+            JOptionPane.showMessageDialog(this, "Beneficiario editado");
         } catch (NegocioException ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }
-    
-    private void eliminarBeneficiarioTabla(long val1){
-        try{
-        this.negocio.eliminar((long)val1);
-        JOptionPane.showMessageDialog(this, "Beneficiario Eliminado");
+
+    private void eliminarBeneficiarioTabla(long val1) {
+        try {
+            this.negocio.eliminar((long) val1);
+            JOptionPane.showMessageDialog(this, "Beneficiario Eliminado");
         } catch (NegocioException ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
         }
-        
-    } 
-    
-    
-     private void cargarConfiguracionInicialTablaBeneficiarios() {
+
+    }
+
+    private void cargarConfiguracionInicialTablaBeneficiarios() {
         ActionListener onEditarClickListener = new ActionListener() {
             final int columnaId = 0;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 editar();
-                
-            }               
+
+            }
         };
-            
-        
+
         int indiceColumnaEditar = 8;
         TableColumnModel modeloColumnas = this.tblBeneficiarios.getColumnModel();
         modeloColumnas.getColumn(indiceColumnaEditar)
@@ -112,9 +103,8 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
                 .setCellEditor(new JButtonCellEditor("Eliminar",
                         onEliminarClickListener));
 
-    } 
-    
-    
+    }
+
     private long getIdSeleccionadoTablaBeneficiarios() {
         int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
@@ -126,9 +116,8 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
         } else {
             return 0;
         }
-    }     
-     
-     
+    }
+
     private String getClaveSeleccionadoTablaBeneficiarios() {
         int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
@@ -142,7 +131,6 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
         }
     }
 
-    
     private String getNombreSeleccionadoTablaBeneficiarios() {
         int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
@@ -154,8 +142,8 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
         } else {
             return null;
         }
-    }  
-    
+    }
+
     private String getAPSeleccionadoTablaBeneficiarios() {
         int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
@@ -167,8 +155,8 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
         } else {
             return null;
         }
-    } 
-    
+    }
+
     private String getAMSeleccionadoTablaBeneficiarios() {
         int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
@@ -180,9 +168,9 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
         } else {
             return null;
         }
-    }  
-    
-        private String getUsuarioSeleccionadoTablaBeneficiarios() {
+    }
+
+    private String getUsuarioSeleccionadoTablaBeneficiarios() {
         int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
@@ -192,10 +180,10 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
             return usuarioBeneficiarioSeleccionado;
         } else {
             return null;
-    }     
         }
-        
-        private String getContrasenaSeleccionadoTablaBeneficiarios() {
+    }
+
+    private String getContrasenaSeleccionadoTablaBeneficiarios() {
         int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
@@ -205,11 +193,10 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
             return contrasenaBeneficiarioSeleccionado;
         } else {
             return null;
-    }     
-        }        
-        
-        
-        private double getSaldoSeleccionadoTablaBeneficiarios() {
+        }
+    }
+
+    private double getSaldoSeleccionadoTablaBeneficiarios() {
         int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
@@ -219,14 +206,12 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
             return saldoBeneficiarioSeleccionado;
         } else {
             return 0.0;
-    }     
-        }  
-    
+        }
+    }
+
     private void editar() {
         //Metodo para regresar el alumno seleccionado
 
-        
-        
         String clave = this.getClaveSeleccionadoTablaBeneficiarios();
         String nombre = this.getNombreSeleccionadoTablaBeneficiarios();
         String aPaterno = this.getAPSeleccionadoTablaBeneficiarios();
@@ -245,10 +230,9 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
         beneficiario.setUsuario(usuario);
         beneficiario.setId(id);
         beneficiario.setContrasena(contra);
-        
 
         editarBeneficiarioTabla(beneficiario);
-        
+
     }
 
     private void eliminar() {
@@ -256,9 +240,9 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
         long id = this.getIdSeleccionadoTablaBeneficiarios();
         eliminarBeneficiarioTabla(id);
         cargarMetodosIniciales();
-        
+
     }
-    
+
     private void llenarTablaBeneficiarios(List<BeneficiarioDTO> beneficiariosLista) {
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblBeneficiarios.getModel();
 
@@ -292,8 +276,7 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -394,13 +377,13 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         frmInicioAdmin adminFrame = new frmInicioAdmin();
         adminFrame.setVisible(true);
-        this.dispose(); 
+        this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnNuevoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoRegistroActionPerformed
-     dlgRegistrarBeneficiario adminFrame = new dlgRegistrarBeneficiario();
+        dlgRegistrarBeneficiario adminFrame = new dlgRegistrarBeneficiario(this, true, negocio);
         adminFrame.setVisible(true);
-        this.dispose(); 
+        this.dispose();
     }//GEN-LAST:event_btnNuevoRegistroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

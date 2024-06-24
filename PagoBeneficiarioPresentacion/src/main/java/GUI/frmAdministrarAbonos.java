@@ -17,12 +17,6 @@ public class frmAdministrarAbonos extends javax.swing.JFrame {
      */
     public frmAdministrarAbonos() {
         initComponents();
-            // Agregar ActionListener al botón Administrador
-        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 btnRegresarActionPerformed(evt);
-            }
-        });
     }
 
     /**
