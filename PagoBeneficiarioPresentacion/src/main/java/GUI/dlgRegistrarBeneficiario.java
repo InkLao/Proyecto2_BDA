@@ -216,6 +216,11 @@ public class dlgRegistrarBeneficiario extends javax.swing.JDialog {
         IBeneficiarioNegocio beneficiarioNegocio = new BeneficiarioNegocio(new BeneficiarioDAO());
         beneficiarioNegocio.crear(beneficiario);
         JOptionPane.showMessageDialog(this, "Beneficiario guardado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        
+        frmAdministrarBeneficiarios admBen = new frmAdministrarBeneficiarios();
+        admBen.setVisible(true);
+        
+        this.dispose();
     } catch (NegocioException e) {
         JOptionPane.showMessageDialog(this, "Error al guardar el beneficiario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     } catch (Exception e) {

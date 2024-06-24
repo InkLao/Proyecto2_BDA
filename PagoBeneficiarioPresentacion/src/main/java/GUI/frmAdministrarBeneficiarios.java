@@ -6,11 +6,16 @@ package GUI;
 
 import DTO.BeneficiarioDTO;
 import excepciones.NegocioException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import negocio.BeneficiarioNegocio;
 import negocio.IBeneficiarioNegocio;
+import utilerias.JButtonCellEditor;
+import utilerias.JButtonRenderer;
  
 
 /**
@@ -20,7 +25,7 @@ import negocio.IBeneficiarioNegocio;
 public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
     
     private IBeneficiarioNegocio negocio = new BeneficiarioNegocio();
-
+    private int i = 0;
 
 
     public frmAdministrarBeneficiarios() {
@@ -42,36 +47,221 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
     }
     
     
+    private void insertarBeneficiarioTabla(BeneficiarioDTO beneficiario){
+        try{
+        this.negocio.crear(beneficiario);
+        } catch (NegocioException ex) {
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void editarBeneficiarioTabla(BeneficiarioDTO beneficiario){
+        try{
+        this.negocio.actualizar(beneficiario);
+        JOptionPane.showMessageDialog(this, "Beneficiario editado");
+        } catch (NegocioException ex) {
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    
+    private void eliminarBeneficiarioTabla(long val1){
+        try{
+        this.negocio.eliminar((long)val1);
+        JOptionPane.showMessageDialog(this, "Beneficiario Eliminado");
+        } catch (NegocioException ex) {
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    } 
+    
+    
      private void cargarConfiguracionInicialTablaBeneficiarios() {
-        final int columnaId = 0;
+        ActionListener onEditarClickListener = new ActionListener() {
+            final int columnaId = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                editar();
+                
+            }               
+        };
+            
+        
+        int indiceColumnaEditar = 8;
+        TableColumnModel modeloColumnas = this.tblBeneficiarios.getColumnModel();
+        modeloColumnas.getColumn(indiceColumnaEditar)
+                .setCellRenderer(new JButtonRenderer("Editar"));
+        modeloColumnas.getColumn(indiceColumnaEditar)
+                .setCellEditor(new JButtonCellEditor("Editar",
+                        onEditarClickListener));
+
+        ActionListener onEliminarClickListener = new ActionListener() {
+            final int columnaId = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Metodo para eliminar un alumno
+                eliminar();
+            }
+        };
+        int indiceColumnaEliminar = 9;
+        modeloColumnas = this.tblBeneficiarios.getColumnModel();
+        modeloColumnas.getColumn(indiceColumnaEliminar)
+                .setCellRenderer(new JButtonRenderer("Eliminar"));
+        modeloColumnas.getColumn(indiceColumnaEliminar)
+                .setCellEditor(new JButtonCellEditor("Eliminar",
+                        onEliminarClickListener));
 
     } 
     
     
-    private int getIdSeleccionadoTablaBeneficiarios() {
+    private long getIdSeleccionadoTablaBeneficiarios() {
         int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
             int indiceColumnaId = 0;
-            int idBeneficiarioSeleccionado = (int) modelo.getValueAt(indiceFilaSeleccionada,
+            long idBeneficiarioSeleccionado = (long) modelo.getValueAt(indiceFilaSeleccionada,
                     indiceColumnaId);
             return idBeneficiarioSeleccionado;
         } else {
             return 0;
         }
+    }     
+     
+     
+    private String getClaveSeleccionadoTablaBeneficiarios() {
+        int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
+            int indiceColumnaId = 1;
+            String claveBeneficiarioSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada,
+                    indiceColumnaId);
+            return claveBeneficiarioSeleccionado;
+        } else {
+            return null;
+        }
     }
 
+    
+    private String getNombreSeleccionadoTablaBeneficiarios() {
+        int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
+            int indiceColumnaId = 2;
+            String nombreBeneficiarioSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada,
+                    indiceColumnaId);
+            return nombreBeneficiarioSeleccionado;
+        } else {
+            return null;
+        }
+    }  
+    
+    private String getAPSeleccionadoTablaBeneficiarios() {
+        int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
+            int indiceColumnaId = 3;
+            String aPBeneficiarioSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada,
+                    indiceColumnaId);
+            return aPBeneficiarioSeleccionado;
+        } else {
+            return null;
+        }
+    } 
+    
+    private String getAMSeleccionadoTablaBeneficiarios() {
+        int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
+            int indiceColumnaId = 4;
+            String aMBeneficiarioSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada,
+                    indiceColumnaId);
+            return aMBeneficiarioSeleccionado;
+        } else {
+            return null;
+        }
+    }  
+    
+        private String getUsuarioSeleccionadoTablaBeneficiarios() {
+        int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
+            int indiceColumnaId = 5;
+            String usuarioBeneficiarioSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada,
+                    indiceColumnaId);
+            return usuarioBeneficiarioSeleccionado;
+        } else {
+            return null;
+    }     
+        }
+        
+        private String getContrasenaSeleccionadoTablaBeneficiarios() {
+        int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
+            int indiceColumnaId = 6;
+            String contrasenaBeneficiarioSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada,
+                    indiceColumnaId);
+            return contrasenaBeneficiarioSeleccionado;
+        } else {
+            return null;
+    }     
+        }        
+        
+        
+        private double getSaldoSeleccionadoTablaBeneficiarios() {
+        int indiceFilaSeleccionada = this.tblBeneficiarios.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblBeneficiarios.getModel();
+            int indiceColumnaId = 7;
+            double saldoBeneficiarioSeleccionado = (double) modelo.getValueAt(indiceFilaSeleccionada,
+                    indiceColumnaId);
+            return saldoBeneficiarioSeleccionado;
+        } else {
+            return 0.0;
+    }     
+        }  
+    
     private void editar() {
         //Metodo para regresar el alumno seleccionado
-        int id = this.getIdSeleccionadoTablaBeneficiarios();
 
+        
+        
+        String clave = this.getClaveSeleccionadoTablaBeneficiarios();
+        String nombre = this.getNombreSeleccionadoTablaBeneficiarios();
+        String aPaterno = this.getAPSeleccionadoTablaBeneficiarios();
+        String aMaterno = this.getAMSeleccionadoTablaBeneficiarios();
+        String usuario = this.getUsuarioSeleccionadoTablaBeneficiarios();
+        long id = this.getIdSeleccionadoTablaBeneficiarios();
+        double saldo = this.getSaldoSeleccionadoTablaBeneficiarios();
+        String contra = this.getContrasenaSeleccionadoTablaBeneficiarios();
+
+        BeneficiarioDTO beneficiario = new BeneficiarioDTO();
+        beneficiario.setClaveContrato(clave);
+        beneficiario.setMaterno(aMaterno);
+        beneficiario.setNombres(nombre);
+        beneficiario.setPaterno(aPaterno);
+        beneficiario.setSaldo(saldo);
+        beneficiario.setUsuario(usuario);
+        beneficiario.setId(id);
+        beneficiario.setContrasena(contra);
+        
+
+        editarBeneficiarioTabla(beneficiario);
+        
     }
 
     private void eliminar() {
-        //Metodo para regresar el alumno seleccionado
-        int id = this.getIdSeleccionadoTablaBeneficiarios();
+        //Metodo para regresar el beneficiario seleccionado
+        long id = this.getIdSeleccionadoTablaBeneficiarios();
+        eliminarBeneficiarioTabla(id);
+        this.i = 0;
+        cargarMetodosIniciales();
+        
     }
-
+    
     private void llenarTablaBeneficiarios(List<BeneficiarioDTO> beneficiariosLista) {
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblBeneficiarios.getModel();
 
@@ -83,13 +273,15 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
 
         if (beneficiariosLista != null) {
             beneficiariosLista.forEach(row -> {
-                Object[] fila = new Object[6];
-                fila[0] = row.getClaveContrato();
-                fila[1] = row.getMaterno();
-                fila[2] = row.getPaterno();
-                fila[3] = row.getMaterno();
-                fila[4] = row.getUsuario();
-                fila[5] = row.getSaldo();
+                Object[] fila = new Object[8];
+                fila[0] = row.getId();
+                fila[1] = row.getClaveContrato();
+                fila[2] = row.getMaterno();
+                fila[3] = row.getPaterno();
+                fila[4] = row.getMaterno();
+                fila[5] = row.getUsuario();
+                fila[6] = row.getContrasena();
+                fila[7] = row.getSaldo();
                 modeloTabla.addRow(fila);
             });
         }
@@ -104,9 +296,6 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
         }
     }    
     
-    private void convertirABeneficiarioDTO(){
-    
-    }
     
     
     /**
@@ -132,17 +321,17 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
         tblBeneficiarios.setBackground(new java.awt.Color(225, 225, 225));
         tblBeneficiarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Clave", "Nombres", "Apellido Paterno", "Apelldio Materno", "Usuario", "Saldo", "Editar", "Eliminar"
+                "id", "Clave", "Nombres", "Apellido Paterno", "Apelldio Materno", "Usuario", "Contrasena", "Saldo", "Editar", "Eliminar"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, true, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -181,20 +370,20 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(520, 520, 520)))
+                        .addGap(520, 520, 520))
+                    .addComponent(btnNuevoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addContainerGap(67, Short.MAX_VALUE)
                 .addComponent(btnNuevoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );

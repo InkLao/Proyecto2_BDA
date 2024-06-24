@@ -43,7 +43,6 @@ public class frmInicioAdmin extends javax.swing.JFrame {
 
         btnVerInformacionEstatus.setBackground(new java.awt.Color(23, 154, 249));
         btnVerInformacionEstatus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnVerInformacionEstatus.setForeground(new java.awt.Color(0, 0, 0));
         btnVerInformacionEstatus.setText("Ver informacion");
         btnVerInformacionEstatus.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), null));
         btnVerInformacionEstatus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -54,18 +53,15 @@ public class frmInicioAdmin extends javax.swing.JFrame {
         });
 
         jblEstatus.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblEstatus.setForeground(new java.awt.Color(0, 0, 0));
         jblEstatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jblEstatus.setText("Estatus");
 
         jblBeneficiario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblBeneficiario.setForeground(new java.awt.Color(0, 0, 0));
         jblBeneficiario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jblBeneficiario.setText("Beneficiario");
 
         btnAdministrarBeneficiario.setBackground(new java.awt.Color(23, 154, 249));
         btnAdministrarBeneficiario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAdministrarBeneficiario.setForeground(new java.awt.Color(0, 0, 0));
         btnAdministrarBeneficiario.setText("Administrar Beneficiario");
         btnAdministrarBeneficiario.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), null));
         btnAdministrarBeneficiario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -114,10 +110,14 @@ public class frmInicioAdmin extends javax.swing.JFrame {
 
         btnCerrarSesion.setBackground(new java.awt.Color(23, 154, 249));
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
         btnCerrarSesion.setText("Cerrar Sesion");
         btnCerrarSesion.setBorder(null);
         btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,11 +169,15 @@ public class frmInicioAdmin extends javax.swing.JFrame {
         adminFrame.setVisible(true);
         this.dispose(); 
     }//GEN-LAST:event_btnAdministrarBeneficiarioActionPerformed
-   private void btnCerrarSesionoActionPerformed(java.awt.event.ActionEvent evt) {                                                           
-     frmIniciarSesion adminFrame = new frmIniciarSesion();
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        // TODO add your handling code here:
+         frmIniciarSesion adminFrame = new frmIniciarSesion();
         adminFrame.setVisible(true);
-        this.dispose(); 
-    }  
+        this.dispose();     
+        
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdministrarBeneficiario;
