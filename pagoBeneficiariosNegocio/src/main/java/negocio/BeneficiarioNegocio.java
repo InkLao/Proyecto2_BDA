@@ -132,4 +132,26 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
             throw new NegocioException("Error al eliminar el beneficiario", e);
         }
     }
+
+    @Override
+    public BeneficiarioDTO iniciarSesion(String usuario, String contrasena) throws NegocioException {
+        try {
+            BeneficiarioEntidad beneficiarioEntidad = beneficiarioDAO.iniciarSesion(usuario, contrasena);
+            if (beneficiarioEntidad == null) {
+                return null;
+            }
+            return new BeneficiarioDTO(
+                beneficiarioEntidad.getId(),
+                beneficiarioEntidad.getClaveContrato(),
+                beneficiarioEntidad.getSaldo(),
+                beneficiarioEntidad.getUsuario(),
+                beneficiarioEntidad.getContraseña(),
+                beneficiarioEntidad.getNombres(),
+                beneficiarioEntidad.getPaterno(),
+                beneficiarioEntidad.getMaterno()
+            );
+        } catch (Exception e) {
+            throw new NegocioException("Error al iniciar sesión", e);
+        }
+    }
 }

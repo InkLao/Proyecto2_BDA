@@ -103,9 +103,6 @@
               </Border>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoContrase&#xf1;aActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="campoTextoUsuario1">
           <Properties>
@@ -118,9 +115,6 @@
               </Border>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoUsuario1ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jblUsuario">
           <Properties>
@@ -156,6 +150,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdminActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnIngresar">
           <Properties>
@@ -173,6 +170,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

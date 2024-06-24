@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import DAOs.BeneficiarioDAO;
+import DTO.BeneficiarioDTO;
+import excepciones.NegocioException;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -13,6 +16,8 @@ import javax.swing.JOptionPane;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import negocio.BeneficiarioNegocio;
+import negocio.IBeneficiarioNegocio;
 
 
 /**
@@ -88,46 +93,40 @@ public class frmIniciarSesion extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        campoTextoContraseña.setBackground(new java.awt.Color(255, 255, 255));
         campoTextoContraseña.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        campoTextoContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoContraseñaActionPerformed(evt);
-            }
-        });
 
-        campoTextoUsuario1.setBackground(new java.awt.Color(255, 255, 255));
         campoTextoUsuario1.setForeground(new java.awt.Color(255, 255, 255));
         campoTextoUsuario1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        campoTextoUsuario1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoUsuario1ActionPerformed(evt);
-            }
-        });
 
         jblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jblUsuario.setForeground(new java.awt.Color(0, 0, 0));
         jblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jblUsuario.setText("Usuario");
 
         jblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jblContraseña.setForeground(new java.awt.Color(0, 0, 0));
         jblContraseña.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jblContraseña.setText("Contraseña");
 
         btnAdmin.setBackground(new java.awt.Color(23, 154, 249));
         btnAdmin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnAdmin.setText("Administrador");
         btnAdmin.setBorder(null);
         btnAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminActionPerformed(evt);
+            }
+        });
 
         btnIngresar.setBackground(new java.awt.Color(23, 154, 249));
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnIngresar.setForeground(new java.awt.Color(0, 0, 0));
         btnIngresar.setText("Ingresar");
         btnIngresar.setBorder(null);
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,37 +186,34 @@ public class frmIniciarSesion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoTextoContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoContraseñaActionPerformed
-
-    private void campoTextoUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoUsuario1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoUsuario1ActionPerformed
-private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {
- 
-       frmInicioAdmin adminFrame = new frmInicioAdmin();
-        adminFrame.setVisible(true);
-        this.dispose(); 
-    }
-    /**
-     * @param args the command line arguments
-     */
- private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {
-      
-// Verificar si el usuario y la contraseña son correctos
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         String usuario = campoTextoUsuario1.getText();
         String contrasena = campoTextoContraseña.getText();
 
-        if (usuario.equals("usuario") && contrasena.equals("1234")) { // Ejemplo de validación
-            // Abrir el formulario frmInicioUsuario
-            frmInicioUsuario usuarioFrame = new frmInicioUsuario();
-            usuarioFrame.setVisible(true);
-            this.dispose(); // Cierra el formulario actual
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            IBeneficiarioNegocio beneficiarioNegocio = new BeneficiarioNegocio(new BeneficiarioDAO());
+            BeneficiarioDTO beneficiario = beneficiarioNegocio.iniciarSesion(usuario, contrasena);
+
+            if (beneficiario != null) {
+                frmInicioUsuario usuarioFrame = new frmInicioUsuario();
+                usuarioFrame.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
+        // TODO add your handling code here:
+        frmInicioAdmin adminFrame = new frmInicioAdmin();
+        adminFrame.setVisible(true);
+        this.dispose(); 
+    }//GEN-LAST:event_btnAdminActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;

@@ -20,4 +20,5 @@ public interface IBeneficiarioNegocio {
     List<BeneficiarioDTO> obtenerTodos() throws NegocioException;
     void actualizar(BeneficiarioDTO beneficiario) throws NegocioException;
     void eliminar(Long id) throws NegocioException;
+    BeneficiarioDTO iniciarSesion(String usuario, String contrasena) throws NegocioException;
 }

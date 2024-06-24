@@ -63,4 +63,24 @@ public class BeneficiarioDAO implements IBeneficiarioDAO{
         }
         em.close();
     }
+    
+    @Override
+    public BeneficiarioEntidad iniciarSesion(String usuario, String contrasena) throws PersistenciaException {
+        EntityManager em = emf.createEntityManager();
+        try {
+            List<BeneficiarioEntidad> resultados = em.createQuery("SELECT b FROM BeneficiarioEntidad b WHERE b.usuario = :usuario AND b.contrasena = :contrasena", BeneficiarioEntidad.class)
+                    .setParameter("usuario", usuario)
+                    .setParameter("contrasena", contrasena)
+                    .getResultList();
+            if (resultados.isEmpty()) {
+                return null;
+            } else {
+                return resultados.get(0);
+            }
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al iniciar sesión", e);
+        } finally {
+            em.close();
+        }
+    }
 }
