@@ -53,6 +53,11 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.0.33</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>pagoBeneficiariosNegocio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     
     <!-- Propiedades para la compilación -->
