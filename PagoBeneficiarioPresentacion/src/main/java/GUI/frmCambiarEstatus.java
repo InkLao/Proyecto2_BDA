@@ -21,13 +21,8 @@ public class frmCambiarEstatus extends javax.swing.JFrame {
 
   private DefaultTableModel tableModel; // Define el modelo de tabla para jTable2
     public frmCambiarEstatus() {
- initComponents();
+        initComponents();
        
-        btnVerRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 btnVerRegresarActionPerformed(evt);
-            }
-        });
             // Agregar ActionListener 
        btnVerGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
