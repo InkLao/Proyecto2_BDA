@@ -15,12 +15,7 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
      */
     public frmAdministrarPagos() {
         initComponents();
-          // Agregar ActionListener al botón Administrador
-        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 btnRegresarActionPerformed(evt);
-            }
-        });
+    
     }
 
     /**
@@ -49,6 +44,7 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPagos = new javax.swing.JTable();
+        btnRegresar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrar Pagos");
@@ -56,53 +52,41 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         comboBoxTipoPagos.setBackground(new java.awt.Color(225, 225, 225));
-        comboBoxTipoPagos.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxTipoPagos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Pago", "Creado", "Autorizado", "Pagado", "Rechazado", "Modificado" }));
 
         jPanel2.setBackground(new java.awt.Color(225, 225, 225));
         jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
         campoTextoMonto.setBackground(new java.awt.Color(225, 225, 225));
-        campoTextoMonto.setForeground(new java.awt.Color(0, 0, 0));
         campoTextoMonto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         campoTextoFechaHora.setBackground(new java.awt.Color(225, 225, 225));
-        campoTextoFechaHora.setForeground(new java.awt.Color(0, 0, 0));
         campoTextoFechaHora.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         campoTextoEstatus.setBackground(new java.awt.Color(225, 225, 225));
-        campoTextoEstatus.setForeground(new java.awt.Color(0, 0, 0));
         campoTextoEstatus.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         campoTextoMensualidades.setBackground(new java.awt.Color(225, 225, 225));
-        campoTextoMensualidades.setForeground(new java.awt.Color(0, 0, 0));
         campoTextoMensualidades.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         campoTextoRestante.setBackground(new java.awt.Color(225, 225, 225));
-        campoTextoRestante.setForeground(new java.awt.Color(0, 0, 0));
         campoTextoRestante.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jblMonto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblMonto.setForeground(new java.awt.Color(0, 0, 0));
         jblMonto.setText("Monto");
 
         jblFechaHora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblFechaHora.setForeground(new java.awt.Color(0, 0, 0));
         jblFechaHora.setText("Fecha y hora");
 
         jblEstatus.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblEstatus.setForeground(new java.awt.Color(0, 0, 0));
         jblEstatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jblEstatus.setText("Estatus");
 
         jblMensualidades.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblMensualidades.setForeground(new java.awt.Color(0, 0, 0));
         jblMensualidades.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jblMensualidades.setText("Mensualidades");
 
         jblRestante.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jblRestante.setForeground(new java.awt.Color(0, 0, 0));
         jblRestante.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jblRestante.setText("Restante");
 
@@ -159,17 +143,17 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(225, 225, 225));
         jTextField1.setForeground(new java.awt.Color(225, 225, 225));
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mensaje", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mensaje", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        btnRegresar.setBackground(new java.awt.Color(23, 154, 249));
+        btnRegresar.setBackground(new java.awt.Color(51, 153, 255));
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnRegresar.setForeground(new java.awt.Color(0, 0, 0));
-        btnRegresar.setText("Regresar");
+        btnRegresar.setText("Nuevo Pago");
+        btnRegresar.setActionCommand("Nuevo Pago");
         btnRegresar.setBorder(null);
         btnRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarActionPerformed(evt);
+                btnNuevoPagoActionPerformed(evt);
             }
         });
 
@@ -194,23 +178,36 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPagos);
 
+        btnRegresar1.setBackground(new java.awt.Color(23, 154, 249));
+        btnRegresar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegresar1.setText("Regresar");
+        btnRegresar1.setBorder(null);
+        btnRegresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegresar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(comboBoxTipoPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(comboBoxTipoPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(39, 39, 39)
+                    .addComponent(btnRegresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(554, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,9 +220,14 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(452, Short.MAX_VALUE)
+                    .addComponent(btnRegresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(7, 7, 7)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -243,15 +245,22 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-          frmInicioUsuario adminFrame = new  frmInicioUsuario ();
+    private void btnNuevoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPagoActionPerformed
+       frmNuevoPago nuevoPagoFrame= new frmNuevoPago();
+       nuevoPagoFrame.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_btnNuevoPagoActionPerformed
+
+    private void btnRegresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresar1ActionPerformed
+     frmInicioUsuario adminFrame = new  frmInicioUsuario ();
         adminFrame.setVisible(true);
-        this.dispose(); 
-    }//GEN-LAST:event_btnRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnRegresar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton btnRegresar1;
     private javax.swing.JTextField campoTextoEstatus;
     private javax.swing.JTextField campoTextoFechaHora;
     private javax.swing.JTextField campoTextoMensualidades;
