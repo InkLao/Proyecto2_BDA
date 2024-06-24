@@ -50,7 +50,7 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
         for (BeneficiarioEntidad beneficiario : beneficiarios) {
             BeneficiarioDTO dto = new BeneficiarioDTO();
             dto.setClaveContrato(beneficiario.getClaveContrato());
-            dto.setContrasena(beneficiario.getContraseña());
+            dto.setContrasena(beneficiario.getContrasena());
             dto.setId(beneficiario.getId());
             dto.setMaterno(beneficiario.getMaterno());
             dto.setNombres(beneficiario.getNombres());
@@ -70,7 +70,7 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
             entidad.setClaveContrato(beneficiario.getClaveContrato());
             entidad.setSaldo(beneficiario.getSaldo());
             entidad.setUsuario(beneficiario.getUsuario());
-            entidad.setContraseña(beneficiario.getContrasena());
+            entidad.setContrasena(beneficiario.getContrasena());
             entidad.setNombres(beneficiario.getNombres());
             entidad.setPaterno(beneficiario.getPaterno());
             entidad.setMaterno(beneficiario.getMaterno());
@@ -87,7 +87,7 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
             if (entidad == null) {
                 throw new NegocioException("Beneficiario no encontrado");
             }
-            return new BeneficiarioDTO(entidad.getId(), entidad.getClaveContrato(), entidad.getSaldo(), entidad.getUsuario(), entidad.getContraseña(), entidad.getNombres(), entidad.getPaterno(), entidad.getMaterno());
+            return new BeneficiarioDTO(entidad.getId(), entidad.getClaveContrato(), entidad.getSaldo(), entidad.getUsuario(), entidad.getContrasena(), entidad.getNombres(), entidad.getPaterno(), entidad.getMaterno());
         } catch (Exception e) {
             throw new NegocioException("Error al obtener el beneficiario por id", e);
         }
@@ -97,7 +97,7 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
     public List<BeneficiarioDTO> obtenerTodos() throws NegocioException {
         try {
             return beneficiarioDAO.obtenerTodos().stream()
-                    .map(entidad -> new BeneficiarioDTO(entidad.getId(), entidad.getClaveContrato(), entidad.getSaldo(), entidad.getUsuario(), entidad.getContraseña(), entidad.getNombres(), entidad.getPaterno(), entidad.getMaterno()))
+                    .map(entidad -> new BeneficiarioDTO(entidad.getId(), entidad.getClaveContrato(), entidad.getSaldo(), entidad.getUsuario(), entidad.getContrasena(), entidad.getNombres(), entidad.getPaterno(), entidad.getMaterno()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             throw new NegocioException("Error al obtener todos los beneficiarios", e);
@@ -114,7 +114,7 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
             entidad.setClaveContrato(beneficiario.getClaveContrato());
             entidad.setSaldo(beneficiario.getSaldo());
             entidad.setUsuario(beneficiario.getUsuario());
-            entidad.setContraseña(beneficiario.getContrasena());
+            entidad.setContrasena(beneficiario.getContrasena());
             entidad.setNombres(beneficiario.getNombres());
             entidad.setPaterno(beneficiario.getPaterno());
             entidad.setMaterno(beneficiario.getMaterno());
@@ -145,7 +145,7 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
                 beneficiarioEntidad.getClaveContrato(),
                 beneficiarioEntidad.getSaldo(),
                 beneficiarioEntidad.getUsuario(),
-                beneficiarioEntidad.getContraseña(),
+                beneficiarioEntidad.getContrasena(),
                 beneficiarioEntidad.getNombres(),
                 beneficiarioEntidad.getPaterno(),
                 beneficiarioEntidad.getMaterno()

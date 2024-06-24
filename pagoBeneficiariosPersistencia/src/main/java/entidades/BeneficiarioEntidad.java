@@ -36,7 +36,7 @@ public class BeneficiarioEntidad implements Serializable {
     private String usuario;
 
     @Column(nullable = false, length = 55)
-    private String contraseña;
+    private String contrasena;
 
     @Column(nullable = false, length = 55)
     private String nombres;
@@ -85,12 +85,12 @@ public class BeneficiarioEntidad implements Serializable {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getNombres() {

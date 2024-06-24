@@ -78,6 +78,7 @@ public class BeneficiarioDAO implements IBeneficiarioDAO{
                 return resultados.get(0);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new PersistenciaException("Error al iniciar sesión", e);
         } finally {
             em.close();
