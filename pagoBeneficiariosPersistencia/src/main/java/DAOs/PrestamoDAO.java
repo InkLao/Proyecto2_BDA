@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 public class PrestamoDAO implements IPrestamoDAO {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_unit_name");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_pagoBeneficiariosPersistencia_jar_1.0-SNAPSHOTPU");
 
     @Override
     public void crear(PrestamoEntidad prestamo) {

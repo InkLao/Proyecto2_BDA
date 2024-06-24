@@ -2,6 +2,7 @@ utilerias\ClaveContratoGenerator.class
 GUI\frmInicioUsuario$4.class
 GUI\frmNuevoPago$1.class
 GUI\frmAdministrarCuentas$4.class
+GUI\frmIniciarSesion$4.class
 GUI\frmInicioAdmin.class
 utilerias\Utilidades.class
 GUI\dlgRegistrarCuenta$2.class
@@ -11,6 +12,7 @@ GUI\frmAdministrarBeneficiarios$2.class
 GUI\frmInicioUsuario$1.class
 GUI\frmInicioAdmin$1.class
 GUI\frmAdministrarAbonos$5.class
+GUI\frmNuevoPago$5.class
 GUI\frmCambiarEstatus$2.class
 GUI\frmAdministrarBeneficiarios.class
 GUI\frmAdministrarAbonos$2.class
@@ -29,6 +31,7 @@ GUI\frmAdministrarCuentas.class
 GUI\frmInicioAdmin$2.class
 GUI\frmAdministrarAbonos$3.class
 GUI\frmAdministrarPagos$2.class
+GUI\frmNuevoPago$6.class
 GUI\frmAdministrarCuentas$2.class
 GUI\frmIniciarSesion$2.class
 GUI\frmCambiarEstatus$3.class

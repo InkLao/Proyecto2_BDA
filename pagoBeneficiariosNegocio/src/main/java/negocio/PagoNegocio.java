@@ -5,11 +5,14 @@
 package negocio;
 
 import DAOs.IPrestamoDAO;
+import DAOs.PrestamoDAO;
 import DTO.PrestamoDTO;
 import entidades.PrestamoEntidad;
 import excepciones.NegocioException;
+import excepciones.PersistenciaException;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.persistence.PersistenceException;
 
 /**
  *
@@ -17,7 +20,7 @@ import java.util.stream.Collectors;
  */
 public class PagoNegocio implements IPagoNegocio{
     
-    private IPrestamoDAO prestamoDAO;
+    private IPrestamoDAO prestamoDAO = new PrestamoDAO();
 
     public PagoNegocio(IPrestamoDAO prestamoDAO) {
         this.prestamoDAO = prestamoDAO;
@@ -29,15 +32,14 @@ public class PagoNegocio implements IPagoNegocio{
 
     @Override
     public void crear(PrestamoDTO prestamo) throws NegocioException {
-        try {
-            PrestamoEntidad entidad = new PrestamoEntidad();
-            entidad.setMonto(prestamo.getMonto());
-            entidad.setFecha(prestamo.getFecha());
-            entidad.setParcialidades(prestamo.getParcialidades());
-            prestamoDAO.crear(entidad);
-        } catch (Exception e) {
-            throw new NegocioException("Error al crear el prestamo", e);
-        }
+        PrestamoEntidad entidad = new PrestamoEntidad();
+        entidad.setMonto(prestamo.getMonto());
+        System.out.println(prestamo.getMonto());
+        entidad.setFecha(prestamo.getFecha());
+        System.out.println(prestamo.getFecha());
+        entidad.setParcialidades(prestamo.getParcialidades());
+        System.out.println(prestamo.getParcialidades());
+        prestamoDAO.crear(entidad);
     }
 
     @Override
