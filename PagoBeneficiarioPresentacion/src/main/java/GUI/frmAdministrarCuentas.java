@@ -252,9 +252,6 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
     }
     
     
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -369,7 +366,9 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnNuevoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoRegistroActionPerformed
-         JOptionPane.showMessageDialog(null, "Se registro correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+        dlgRegistrarCuenta rc = new dlgRegistrarCuenta();
+        rc.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNuevoRegistroActionPerformed
 
 
