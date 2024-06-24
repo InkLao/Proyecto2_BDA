@@ -5,7 +5,6 @@
 package negocio;
 
 import DTO.BeneficiarioDTO;
-import Dtos.BeneficiariosDTO;
 import excepciones.NegocioException;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public interface IBeneficiarioNegocio {
     
-   public List<BeneficiariosDTO> buscarBeneficiarioTabla() throws NegocioException;
+   public List<BeneficiarioDTO> buscarBeneficiarioTabla() throws NegocioException;
     void crear(BeneficiarioDTO beneficiario) throws NegocioException;
     BeneficiarioDTO obtenerPorId(Long id) throws NegocioException;
     List<BeneficiarioDTO> obtenerTodos() throws NegocioException;

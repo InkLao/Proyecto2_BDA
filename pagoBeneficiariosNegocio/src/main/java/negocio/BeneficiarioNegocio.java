@@ -7,7 +7,6 @@ package negocio;
 import DAOs.BeneficiarioDAO;
 import DAOs.IBeneficiarioDAO;
 import DTO.BeneficiarioDTO;
-import Dtos.BeneficiariosDTO;
 import entidades.BeneficiarioEntidad;
 import excepciones.NegocioException;
 import excepciones.PersistenciaException;
@@ -30,10 +29,9 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
     public BeneficiarioNegocio() {
 
     }
-
     
     @Override
-    public List<BeneficiariosDTO> buscarBeneficiarioTabla() throws NegocioException {
+    public List<BeneficiarioDTO> buscarBeneficiarioTabla() throws NegocioException {
         try {
             List<BeneficiarioEntidad> beneficiarios = this.beneficiarioDAO.obtenerTodos();
             return this.convertirBeneficiarioDTO(beneficiarios);
@@ -43,14 +41,14 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
         }
     }    
     
-    private List<Dtos.BeneficiariosDTO> convertirBeneficiarioDTO(List<BeneficiarioEntidad> beneficiarios) throws NegocioException {
+    private List<DTO.BeneficiarioDTO> convertirBeneficiarioDTO(List<BeneficiarioEntidad> beneficiarios) throws NegocioException {
         if (beneficiarios == null) {
             throw new NegocioException("No se pudieron obtener los benefeficiarios. No hay registros.");
         }
         
-            List<BeneficiariosDTO> beneficiarioDTO = new ArrayList<>();
+            List<BeneficiarioDTO> beneficiarioDTO = new ArrayList<>();
         for (BeneficiarioEntidad beneficiario : beneficiarios) {
-            BeneficiariosDTO dto = new BeneficiariosDTO();
+            BeneficiarioDTO dto = new BeneficiarioDTO();
             dto.setClaveContrato(beneficiario.getClaveContrato());
             dto.setContrasena(beneficiario.getContraseña());
             dto.setId(beneficiario.getId());
