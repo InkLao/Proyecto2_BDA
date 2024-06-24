@@ -26,7 +26,7 @@ import negocio.IBeneficiarioNegocio;
  */
 public class frmIniciarSesion extends javax.swing.JFrame {
 
-
+    IBeneficiarioNegocio ibn = new BeneficiarioNegocio();
    
     public frmIniciarSesion() {
        initComponents();
@@ -191,8 +191,7 @@ public class frmIniciarSesion extends javax.swing.JFrame {
         String contrasena = campoTextoContraseña.getText();
 
         try {
-            IBeneficiarioNegocio beneficiarioNegocio = new BeneficiarioNegocio(new BeneficiarioDAO());
-            BeneficiarioDTO beneficiario = beneficiarioNegocio.iniciarSesion(usuario, contrasena);
+            BeneficiarioDTO beneficiario = ibn.iniciarSesion(usuario, contrasena);
 
             if (beneficiario != null) {
                 frmInicioUsuario usuarioFrame = new frmInicioUsuario();
@@ -202,10 +201,8 @@ public class frmIniciarSesion extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (NegocioException e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
