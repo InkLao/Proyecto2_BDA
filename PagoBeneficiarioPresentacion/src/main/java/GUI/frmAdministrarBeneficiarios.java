@@ -221,7 +221,7 @@ public class frmAdministrarBeneficiarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnNuevoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoRegistroActionPerformed
-     dlgRegistrarBeneficiario adminFrame = new dlgRegistrarBeneficiario();
+     frmRegistrarBeneficiario adminFrame = new frmRegistrarBeneficiario ();
         adminFrame.setVisible(true);
         this.dispose(); 
     }//GEN-LAST:event_btnNuevoRegistroActionPerformed
