@@ -12,9 +12,9 @@ import java.util.List;
  * @author eduar
  */
 public interface IAbonoDAO {
-    void crear(AbonoEntidad abono);
+    AbonoEntidad crear(AbonoEntidad abono);
     AbonoEntidad obtenerPorId(Long id);
     List<AbonoEntidad> obtenerTodos();
-    void actualizar(AbonoEntidad abono);
+    AbonoEntidad actualizar(AbonoEntidad abono);
     void eliminar(Long id);
 }

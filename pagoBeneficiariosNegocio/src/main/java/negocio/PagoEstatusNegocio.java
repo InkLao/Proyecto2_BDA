@@ -5,6 +5,7 @@
 package negocio;
 
 import DAOs.IPagoEstatusDAO;
+import DAOs.PagoEstatusDAO;
 import DTO.PagoEstatusDTO;
 import entidades.EstatusEntidad;
 import entidades.PagoEntidad;
@@ -18,14 +19,14 @@ import java.util.stream.Collectors;
  * @author eduar
  */
 public class PagoEstatusNegocio implements IPagoEstatusNegocio{
-    private IPagoEstatusDAO pagoEstatusDAO;
+    private IPagoEstatusDAO pagoEstatusDAO = new PagoEstatusDAO();
 
     public PagoEstatusNegocio(IPagoEstatusDAO pagoEstatusDAO) {
         this.pagoEstatusDAO = pagoEstatusDAO;
     }
 
     @Override
-    public void crear(PagoEstatusDTO pagoEstatus) throws NegocioException {
+    public PagoEstatusDTO crear(PagoEstatusDTO pagoEstatus) throws NegocioException {
         try {
             PagoEstatusEntidad entidad = new PagoEstatusEntidad();
             entidad.setFechaHora(pagoEstatus.getFechaHora());
@@ -43,6 +44,8 @@ public class PagoEstatusNegocio implements IPagoEstatusNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al crear el pago estatus", e);
         }
+        
+        return pagoEstatus;
     }
 
     @Override
@@ -70,7 +73,7 @@ public class PagoEstatusNegocio implements IPagoEstatusNegocio{
     }
 
     @Override
-    public void actualizar(PagoEstatusDTO pagoEstatus) throws NegocioException {
+    public PagoEstatusDTO actualizar(PagoEstatusDTO pagoEstatus) throws NegocioException {
         try {
             PagoEstatusEntidad entidad = pagoEstatusDAO.obtenerPorId(pagoEstatus.getId());
             if (entidad == null) {
@@ -91,6 +94,8 @@ public class PagoEstatusNegocio implements IPagoEstatusNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al actualizar el pago estatus", e);
         }
+        
+        return pagoEstatus;
     }
 
     @Override

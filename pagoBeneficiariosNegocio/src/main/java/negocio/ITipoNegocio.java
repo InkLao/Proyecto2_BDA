@@ -13,9 +13,9 @@ import java.util.List;
  * @author eduar
  */
 public interface ITipoNegocio {
-    void crear(TipoDTO tipo) throws NegocioException;
+    TipoDTO crear(TipoDTO tipo) throws NegocioException;
     TipoDTO obtenerPorId(Long id) throws NegocioException;
     List<TipoDTO> obtenerTodos() throws NegocioException;
-    void actualizar(TipoDTO tipo) throws NegocioException;
+    TipoDTO actualizar(TipoDTO tipo) throws NegocioException;
     void eliminar(Long id) throws NegocioException;
 }

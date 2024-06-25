@@ -18,12 +18,14 @@ public class PagoEstatusDAO implements IPagoEstatusDAO{
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_unit_name");
 
     @Override
-    public void crear(PagoEstatusEntidad pagoEstatus) {
+    public PagoEstatusEntidad crear(PagoEstatusEntidad pagoEstatus) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(pagoEstatus);
         em.getTransaction().commit();
         em.close();
+        
+        return pagoEstatus;
     }
 
     @Override
@@ -43,12 +45,14 @@ public class PagoEstatusDAO implements IPagoEstatusDAO{
     }
 
     @Override
-    public void actualizar(PagoEstatusEntidad pagoEstatus) {
+    public PagoEstatusEntidad actualizar(PagoEstatusEntidad pagoEstatus) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(pagoEstatus);
         em.getTransaction().commit();
         em.close();
+        
+        return pagoEstatus;
     }
 
     @Override

@@ -14,9 +14,9 @@ import javax.persistence.PersistenceException;
  */
 public interface IPagoDAO {
     
-    void crear(PagoEntidad pago);
+    PagoEntidad crear(PagoEntidad pago);
     PagoEntidad obtenerPorId(Long id);
     List<PagoEntidad> obtenerTodos();
-    void actualizar(PagoEntidad pago);
+    PagoEntidad actualizar(PagoEntidad pago);
     void eliminar(Long id);
 }

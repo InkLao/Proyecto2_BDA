@@ -15,10 +15,10 @@ import java.util.List;
 public interface IBeneficiarioNegocio {
     
    public List<BeneficiarioDTO> buscarBeneficiarioTabla() throws NegocioException;
-    void crear(BeneficiarioDTO beneficiario) throws NegocioException;
+    BeneficiarioDTO crear(BeneficiarioDTO beneficiario) throws NegocioException;
     BeneficiarioDTO obtenerPorId(Long id) throws NegocioException;
     List<BeneficiarioDTO> obtenerTodos() throws NegocioException;
-    void actualizar(BeneficiarioDTO beneficiario) throws NegocioException;
+    BeneficiarioDTO actualizar(BeneficiarioDTO beneficiario) throws NegocioException;
     void eliminar(Long id) throws NegocioException;
     BeneficiarioDTO iniciarSesion(String usuario, String contrasena) throws NegocioException;
 }

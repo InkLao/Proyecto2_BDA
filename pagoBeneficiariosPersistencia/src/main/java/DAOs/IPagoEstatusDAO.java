@@ -12,9 +12,9 @@ import java.util.List;
  * @author eduar
  */
 public interface IPagoEstatusDAO {
-    void crear(PagoEstatusEntidad pagoEstatus);
+    PagoEstatusEntidad crear(PagoEstatusEntidad pagoEstatus);
     PagoEstatusEntidad obtenerPorId(Long id);
     List<PagoEstatusEntidad> obtenerTodos();
-    void actualizar(PagoEstatusEntidad pagoEstatus);
+    PagoEstatusEntidad actualizar(PagoEstatusEntidad pagoEstatus);
     void eliminar(Long id);
 }

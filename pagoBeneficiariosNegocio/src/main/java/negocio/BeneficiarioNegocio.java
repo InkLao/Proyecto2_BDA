@@ -64,7 +64,7 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
     
     
     @Override
-    public void crear(BeneficiarioDTO beneficiario) throws NegocioException {
+    public BeneficiarioDTO crear(BeneficiarioDTO beneficiario) throws NegocioException {
         try {
             BeneficiarioEntidad entidad = new BeneficiarioEntidad();
             entidad.setClaveContrato(beneficiario.getClaveContrato());
@@ -78,6 +78,8 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al crear el beneficiario", e);
         }
+        
+        return beneficiario;
     }
 
     @Override
@@ -105,7 +107,7 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
     }
 
     @Override
-    public void actualizar(BeneficiarioDTO beneficiario) throws NegocioException {
+    public BeneficiarioDTO actualizar(BeneficiarioDTO beneficiario) throws NegocioException {
         try {
             BeneficiarioEntidad entidad = beneficiarioDAO.obtenerPorId(beneficiario.getId());
             if (entidad == null) {
@@ -122,6 +124,8 @@ public class BeneficiarioNegocio implements IBeneficiarioNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al actualizar el beneficiario", e);
         }
+        
+        return beneficiario;
     }
 
     @Override

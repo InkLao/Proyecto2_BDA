@@ -5,6 +5,7 @@
 package negocio;
 
 import DAOs.ITipoDAO;
+import DAOs.TipoDAO;
 import DTO.TipoDTO;
 import entidades.TipoEntidad;
 import excepciones.NegocioException;
@@ -16,14 +17,14 @@ import java.util.stream.Collectors;
  * @author eduar
  */
 public class TipoNegocio implements ITipoNegocio{
-    private ITipoDAO tipoDAO;
+    private ITipoDAO tipoDAO = new TipoDAO();
 
     public TipoNegocio(ITipoDAO tipoDAO) {
         this.tipoDAO = tipoDAO;
     }
 
     @Override
-    public void crear(TipoDTO tipo) throws NegocioException {
+    public TipoDTO crear(TipoDTO tipo) throws NegocioException {
         try {
             TipoEntidad entidad = new TipoEntidad();
             entidad.setNombre(tipo.getNombre());
@@ -32,6 +33,8 @@ public class TipoNegocio implements ITipoNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al crear el tipo", e);
         }
+        
+        return tipo;
     }
 
     @Override
@@ -59,7 +62,7 @@ public class TipoNegocio implements ITipoNegocio{
     }
 
     @Override
-    public void actualizar(TipoDTO tipo) throws NegocioException {
+    public TipoDTO actualizar(TipoDTO tipo) throws NegocioException {
         try {
             TipoEntidad entidad = tipoDAO.obtenerPorId(tipo.getId());
             if (entidad == null) {
@@ -71,6 +74,8 @@ public class TipoNegocio implements ITipoNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al actualizar el tipo", e);
         }
+        
+        return tipo;
     }
 
     @Override

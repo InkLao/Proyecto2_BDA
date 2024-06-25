@@ -11,12 +11,14 @@ public class PrestamoDAO implements IPrestamoDAO {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_pagoBeneficiariosPersistencia_jar_1.0-SNAPSHOTPU");
 
     @Override
-    public void crear(PrestamoEntidad prestamo) {
+    public PrestamoEntidad crear(PrestamoEntidad prestamo) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(prestamo);
         em.getTransaction().commit();
         em.close();
+        
+        return prestamo;
     }
 
     @Override
@@ -25,6 +27,7 @@ public class PrestamoDAO implements IPrestamoDAO {
         PrestamoEntidad prestamo = em.find(PrestamoEntidad.class, id);
         em.close();
         return prestamo;
+        
     }
 
     @Override
@@ -36,12 +39,14 @@ public class PrestamoDAO implements IPrestamoDAO {
     }
 
     @Override
-    public void actualizar(PrestamoEntidad prestamo) {
+    public PrestamoEntidad actualizar(PrestamoEntidad prestamo) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(prestamo);
         em.getTransaction().commit();
         em.close();
+        
+        return prestamo;
     }
 
     @Override

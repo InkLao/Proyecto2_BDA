@@ -13,9 +13,9 @@ import java.util.List;
  * @author eduar
  */
 public interface IPagoEstatusNegocio {
-    void crear(PagoEstatusDTO pagoEstatus) throws NegocioException;
+    PagoEstatusDTO crear(PagoEstatusDTO pagoEstatus) throws NegocioException;
     PagoEstatusDTO obtenerPorId(Long id) throws NegocioException;
     List<PagoEstatusDTO> obtenerTodos() throws NegocioException;
-    void actualizar(PagoEstatusDTO pagoEstatus) throws NegocioException;
+    PagoEstatusDTO actualizar(PagoEstatusDTO pagoEstatus) throws NegocioException;
     void eliminar(Long id) throws NegocioException;
 }

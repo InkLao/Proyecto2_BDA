@@ -12,9 +12,9 @@ import java.util.List;
  * @author eduar
  */
 public interface IPrestamoDAO {
-    void crear(PrestamoEntidad prestamo);
+    PrestamoEntidad crear(PrestamoEntidad prestamo);
     PrestamoEntidad obtenerPorId(Long id);
     List<PrestamoEntidad> obtenerTodos();
-    void actualizar(PrestamoEntidad prestamo);
+    PrestamoEntidad actualizar(PrestamoEntidad prestamo);
     void eliminar(Long id);
 }

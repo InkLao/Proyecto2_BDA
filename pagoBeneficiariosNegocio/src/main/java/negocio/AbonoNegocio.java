@@ -4,6 +4,7 @@
  */
 package negocio;
 
+import DAOs.AbonoDAO;
 import DAOs.IAbonoDAO;
 import DTO.AbonoDTO;
 import entidades.AbonoEntidad;
@@ -17,14 +18,14 @@ import java.util.stream.Collectors;
  * @author eduar
  */
 public class AbonoNegocio implements IAbonoNegocio{
-    private IAbonoDAO abonoDAO;
+    private IAbonoDAO abonoDAO = new AbonoDAO();
 
     public AbonoNegocio(IAbonoDAO abonoDAO) {
         this.abonoDAO = abonoDAO;
     }
 
     @Override
-    public void crear(AbonoDTO abono) throws NegocioException {
+    public AbonoDTO crear(AbonoDTO abono) throws NegocioException {
         try {
             AbonoEntidad entidad = new AbonoEntidad();
             entidad.setFechaHora(abono.getFechaHora());
@@ -36,6 +37,8 @@ public class AbonoNegocio implements IAbonoNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al crear el abono", e);
         }
+        
+        return abono;
     }
 
     @Override
@@ -63,7 +66,7 @@ public class AbonoNegocio implements IAbonoNegocio{
     }
 
     @Override
-    public void actualizar(AbonoDTO abono) throws NegocioException {
+    public AbonoDTO actualizar(AbonoDTO abono) throws NegocioException {
         try {
             AbonoEntidad entidad = abonoDAO.obtenerPorId(abono.getId());
             if (entidad == null) {
@@ -78,6 +81,8 @@ public class AbonoNegocio implements IAbonoNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al actualizar el abono", e);
         }
+        
+        return abono;
     }
 
     @Override

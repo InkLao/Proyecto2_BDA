@@ -19,12 +19,14 @@ public class CuentaBancariaDAO implements ICuentaBancariaDAO{
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_pagoBeneficiariosPersistencia_jar_1.0-SNAPSHOTPU");
 
     @Override
-    public void crear(CuentaBancariaEntidad cuentaBancaria) {
+    public CuentaBancariaEntidad crear(CuentaBancariaEntidad cuentaBancaria) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(cuentaBancaria);
         em.getTransaction().commit();
         em.close();
+        
+        return cuentaBancaria;
     }
 
     @Override
@@ -44,12 +46,14 @@ public class CuentaBancariaDAO implements ICuentaBancariaDAO{
     }
 
     @Override
-    public void actualizar(CuentaBancariaEntidad cuentaBancaria) {
+    public CuentaBancariaEntidad actualizar(CuentaBancariaEntidad cuentaBancaria) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(cuentaBancaria);
         em.getTransaction().commit();
         em.close();
+        
+        return cuentaBancaria;
     }
 
     @Override

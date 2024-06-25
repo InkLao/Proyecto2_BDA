@@ -19,12 +19,14 @@ public class EstatusDAO implements IEstatusDAO{
 private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_unit_name");
 
     @Override
-    public void crear(EstatusEntidad estatus) {
+    public EstatusEntidad crear(EstatusEntidad estatus) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(estatus);
         em.getTransaction().commit();
         em.close();
+        
+        return estatus;
     }
 
     @Override
@@ -44,12 +46,14 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persi
     }
 
     @Override
-    public void actualizar(EstatusEntidad estatus) {
+    public EstatusEntidad actualizar(EstatusEntidad estatus) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(estatus);
         em.getTransaction().commit();
         em.close();
+        
+        return estatus;
     }
 
     @Override

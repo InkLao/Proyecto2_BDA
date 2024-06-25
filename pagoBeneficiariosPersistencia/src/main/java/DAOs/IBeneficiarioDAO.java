@@ -13,10 +13,10 @@ import java.util.List;
  * @author eduar
  */
 public interface IBeneficiarioDAO {
-    void crear(BeneficiarioEntidad beneficiario);
+    BeneficiarioEntidad crear(BeneficiarioEntidad beneficiario);
     BeneficiarioEntidad obtenerPorId(Long id);
     List<BeneficiarioEntidad> obtenerTodos() throws PersistenciaException;
-    void actualizar(BeneficiarioEntidad beneficiario);
+    BeneficiarioEntidad actualizar(BeneficiarioEntidad beneficiario);
     void eliminar(Long id);
     BeneficiarioEntidad iniciarSesion(String usuario, String contrasena) throws PersistenciaException;
 }

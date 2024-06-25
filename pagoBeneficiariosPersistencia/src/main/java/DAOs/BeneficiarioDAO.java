@@ -19,12 +19,14 @@ public class BeneficiarioDAO implements IBeneficiarioDAO{
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_pagoBeneficiariosPersistencia_jar_1.0-SNAPSHOTPU");
 
     @Override
-    public void crear(BeneficiarioEntidad beneficiario) {
+    public BeneficiarioEntidad crear(BeneficiarioEntidad beneficiario) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(beneficiario);
         em.getTransaction().commit();
         em.close();
+        
+        return beneficiario;
     }
 
     @Override
@@ -44,12 +46,14 @@ public class BeneficiarioDAO implements IBeneficiarioDAO{
     }
 
     @Override
-    public void actualizar(BeneficiarioEntidad beneficiario) {
+    public BeneficiarioEntidad actualizar(BeneficiarioEntidad beneficiario) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(beneficiario);
         em.getTransaction().commit();
         em.close();
+        
+        return beneficiario;
     }
 
     @Override

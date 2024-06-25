@@ -18,12 +18,14 @@ public class PagoDAO implements IPagoDAO{
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_pagoBeneficiariosPersistencia_jar_1.0-SNAPSHOTPU");
 
     @Override
-    public void crear(PagoEntidad pago) {
+    public PagoEntidad crear(PagoEntidad pago) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(pago);
         em.getTransaction().commit();
         em.close();
+        
+        return pago;
     }
 
     @Override
@@ -43,12 +45,14 @@ public class PagoDAO implements IPagoDAO{
     }
 
     @Override
-    public void actualizar(PagoEntidad pago) {
+    public PagoEntidad actualizar(PagoEntidad pago) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(pago);
         em.getTransaction().commit();
         em.close();
+        
+        return pago;
     }
 
     @Override

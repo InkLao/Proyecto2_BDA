@@ -12,9 +12,9 @@ import java.util.List;
  * @author eduar
  */
 public interface IEstatusDAO {
-    void crear(EstatusEntidad estatus);
+    EstatusEntidad crear(EstatusEntidad estatus);
     EstatusEntidad obtenerPorId(Long id);
     List<EstatusEntidad> obtenerTodos();
-    void actualizar(EstatusEntidad estatus);
+    EstatusEntidad actualizar(EstatusEntidad estatus);
     void eliminar(Long id);
 }

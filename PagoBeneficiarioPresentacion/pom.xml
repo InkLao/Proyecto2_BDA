@@ -10,11 +10,6 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>pagoBeneficiariosPersistencia</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>pagoBeneficiariosNegocio</artifactId>
             <version>${project.version}</version>
         </dependency>

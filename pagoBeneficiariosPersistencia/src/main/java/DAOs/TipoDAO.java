@@ -15,15 +15,17 @@ import javax.persistence.Persistence;
  * @author eduar
  */
 public class TipoDAO implements ITipoDAO{
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_unit_name");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_pagoBeneficiariosPersistencia_jar_1.0-SNAPSHOTPU");
 
     @Override
-    public void crear(TipoEntidad tipo) {
+    public TipoEntidad crear(TipoEntidad tipo) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(tipo);
         em.getTransaction().commit();
         em.close();
+        
+        return tipo;
     }
  
     @Override
@@ -43,12 +45,14 @@ public class TipoDAO implements ITipoDAO{
     }
 
     @Override
-    public void actualizar(TipoEntidad tipo) {
+    public TipoEntidad actualizar(TipoEntidad tipo) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(tipo);
         em.getTransaction().commit();
         em.close();
+        
+        return tipo;
     }
 
     @Override
@@ -61,5 +65,6 @@ public class TipoDAO implements ITipoDAO{
             em.getTransaction().commit();
         }
         em.close();
+        
     }
 }

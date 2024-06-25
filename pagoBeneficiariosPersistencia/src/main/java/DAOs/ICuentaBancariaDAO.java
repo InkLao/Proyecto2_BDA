@@ -13,9 +13,9 @@ import javax.persistence.PersistenceException;
  * @author eduar
  */
 public interface ICuentaBancariaDAO {
-    void crear(CuentaBancariaEntidad cuentaBancaria);
+    CuentaBancariaEntidad crear(CuentaBancariaEntidad cuentaBancaria);
     CuentaBancariaEntidad obtenerPorId(Long id);
     List<CuentaBancariaEntidad> obtenerTodos() throws PersistenceException;
-    void actualizar(CuentaBancariaEntidad cuentaBancaria);
+    CuentaBancariaEntidad actualizar(CuentaBancariaEntidad cuentaBancaria);
     void eliminar(Long id);
 }

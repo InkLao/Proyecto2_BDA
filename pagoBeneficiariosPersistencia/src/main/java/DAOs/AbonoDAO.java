@@ -18,12 +18,14 @@ public class AbonoDAO implements IAbonoDAO{
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_unit_name");
 
     @Override
-    public void crear(AbonoEntidad abono) {
+    public AbonoEntidad crear(AbonoEntidad abono) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(abono);
         em.getTransaction().commit();
         em.close();
+        
+        return abono;
     }
 
     @Override
@@ -43,12 +45,14 @@ public class AbonoDAO implements IAbonoDAO{
     }
 
     @Override
-    public void actualizar(AbonoEntidad abono) {
+    public AbonoEntidad actualizar(AbonoEntidad abono) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(abono);
         em.getTransaction().commit();
         em.close();
+        
+        return abono;
     }
 
     @Override

@@ -14,9 +14,9 @@ import java.util.List;
  * @author eduar
  */
 public interface IPagoNegocio {
-    void crear(PrestamoDTO prestamo) throws NegocioException;
+    PrestamoDTO crear(PrestamoDTO prestamo) throws NegocioException;
     PrestamoDTO obtenerPorId(Long id) throws NegocioException;
     List<PrestamoDTO> obtenerTodos() throws NegocioException;
-    void actualizar(PrestamoDTO prestamo) throws NegocioException;
+    PrestamoDTO actualizar(PrestamoDTO prestamo) throws NegocioException;
     void eliminar(Long id) throws NegocioException;
 }

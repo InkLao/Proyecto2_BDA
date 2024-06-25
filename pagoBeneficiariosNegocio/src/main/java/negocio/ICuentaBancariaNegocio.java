@@ -13,10 +13,10 @@ import java.util.List;
  * @author eduar
  */
 public interface ICuentaBancariaNegocio {
-    void crear(CuentaBancariaDTO cuentaBancaria) throws NegocioException;
+    CuentaBancariaDTO crear(CuentaBancariaDTO cuentaBancaria) throws NegocioException;
     CuentaBancariaDTO obtenerPorId(Long id) throws NegocioException;
     List<CuentaBancariaDTO> obtenerTodos() throws NegocioException;
-    void actualizar(CuentaBancariaDTO cuentaBancaria) throws NegocioException;
+    CuentaBancariaDTO actualizar(CuentaBancariaDTO cuentaBancaria) throws NegocioException;
     void eliminar(Long id) throws NegocioException;
     public List<CuentaBancariaDTO> buscarCuentaTabla() throws NegocioException;
     

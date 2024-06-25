@@ -34,7 +34,7 @@ public class CuentaBancariaNegocio implements ICuentaBancariaNegocio{
     
 
     @Override
-    public void crear(CuentaBancariaDTO cuentaBancaria) throws NegocioException {
+    public CuentaBancariaDTO crear(CuentaBancariaDTO cuentaBancaria) throws NegocioException {
         try {
             CuentaBancariaEntidad entidad = new CuentaBancariaEntidad();
             entidad.setNumeroDeCuenta(cuentaBancaria.getNumeroDeCuenta());
@@ -48,6 +48,8 @@ public class CuentaBancariaNegocio implements ICuentaBancariaNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al crear la cuenta bancaria", e);
         }
+        
+        return cuentaBancaria;
     }
 
     @Override
@@ -75,7 +77,7 @@ public class CuentaBancariaNegocio implements ICuentaBancariaNegocio{
     }
 
     @Override
-    public void actualizar(CuentaBancariaDTO cuentaBancaria) throws NegocioException {
+    public CuentaBancariaDTO actualizar(CuentaBancariaDTO cuentaBancaria) throws NegocioException {
         try {
             CuentaBancariaEntidad entidad = cuentaBancariaDAO.obtenerPorId(cuentaBancaria.getId());
             if (entidad == null) {
@@ -92,6 +94,8 @@ public class CuentaBancariaNegocio implements ICuentaBancariaNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al actualizar la cuenta bancaria", e);
         }
+        
+        return cuentaBancaria;
     }
 
     @Override

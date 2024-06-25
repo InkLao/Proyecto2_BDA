@@ -13,9 +13,9 @@ import java.util.List;
  * @author eduar
  */
 public interface IEstatusNegocio {
-    void crear(EstatusDTO estatus) throws NegocioException;
+    EstatusDTO crear(EstatusDTO estatus) throws NegocioException;
     EstatusDTO obtenerPorId(Long id) throws NegocioException;
     List<EstatusDTO> obtenerTodos() throws NegocioException;
-    void actualizar(EstatusDTO estatus) throws NegocioException;
+    EstatusDTO actualizar(EstatusDTO estatus) throws NegocioException;
     void eliminar(Long id) throws NegocioException;
 }

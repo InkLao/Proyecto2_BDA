@@ -31,7 +31,7 @@ public class PagoNegocio implements IPagoNegocio{
     }
 
     @Override
-    public void crear(PrestamoDTO prestamo) throws NegocioException {
+    public PrestamoDTO crear(PrestamoDTO prestamo) throws NegocioException {
         PrestamoEntidad entidad = new PrestamoEntidad();
         entidad.setMonto(prestamo.getMonto());
         System.out.println(prestamo.getMonto());
@@ -40,6 +40,8 @@ public class PagoNegocio implements IPagoNegocio{
         entidad.setParcialidades(prestamo.getParcialidades());
         System.out.println(prestamo.getParcialidades());
         prestamoDAO.crear(entidad);
+        
+        return prestamo;
     }
 
     @Override
@@ -67,7 +69,7 @@ public class PagoNegocio implements IPagoNegocio{
     }
 
     @Override
-    public void actualizar(PrestamoDTO prestamo) throws NegocioException {
+    public PrestamoDTO actualizar(PrestamoDTO prestamo) throws NegocioException {
         try {
             PrestamoEntidad entidad = prestamoDAO.obtenerPorId(prestamo.getId());
             if (entidad == null) {
@@ -80,6 +82,8 @@ public class PagoNegocio implements IPagoNegocio{
         } catch (Exception e) {
             throw new NegocioException("Error al actualizar el prestamo", e);
         }
+        
+        return prestamo;
     }
 
     @Override

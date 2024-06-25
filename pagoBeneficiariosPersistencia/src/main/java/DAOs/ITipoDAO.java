@@ -12,9 +12,9 @@ import java.util.List;
  * @author eduar
  */
 public interface ITipoDAO {
-    void crear(TipoEntidad tipo);
+    TipoEntidad crear(TipoEntidad tipo);
     TipoEntidad obtenerPorId(Long id);
     List<TipoEntidad> obtenerTodos();
-    void actualizar(TipoEntidad tipo);
+    TipoEntidad actualizar(TipoEntidad tipo);
     void eliminar(Long id);
 }
