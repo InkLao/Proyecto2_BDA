@@ -6,6 +6,7 @@ package negocio;
 
 import DAOs.IPagoEstatusDAO;
 import DAOs.PagoEstatusDAO;
+import DTO.PagoDTO;
 import DTO.PagoEstatusDTO;
 import entidades.EstatusEntidad;
 import entidades.PagoEntidad;
@@ -31,21 +32,26 @@ public class PagoEstatusNegocio implements IPagoEstatusNegocio{
    
     
     @Override
-    public PagoEstatusDTO crear(PagoEstatusDTO pagoEstatus) throws NegocioException {
+    public PagoEstatusDTO crear(PagoEstatusDTO pagoEstatus, PagoDTO pago, EstatusEntidad en) throws NegocioException {
         try {
             PagoEstatusEntidad entidad = new PagoEstatusEntidad();
             entidad.setFechaHora(pagoEstatus.getFechaHora());
             System.out.println(entidad.getFechaHora().toString() +" estatus y fecha");
             entidad.setMensaje(pagoEstatus.getMensaje());
             
-            PagoEntidad pago = new PagoEntidad();
-            pago.setId(pagoEstatus.getPagoId().getId());
-            entidad.setPago(pago);
+            PagoEntidad pagoNuevo = new PagoEntidad();
+            pagoNuevo.setId(pago.getId());
+            pagoNuevo.setBeneficiario(pago.getBeneficiarioId());
+            pagoNuevo.setFechaHora(pago.getFechaHora());
+            pagoNuevo.setMonto(pago.getMonto());
+            pagoNuevo.setTipo(pago.getTipoId());
+            entidad.setPago(pagoNuevo);
+
+            entidad.setEstatus(en);
             
-            EstatusEntidad estatus = new EstatusEntidad();
-            estatus.setId(pagoEstatus.getId());
-            entidad.setEstatus(estatus);
             
+            System.out.println("antes de ");
+            System.out.println(entidad.getPago().getFechaHora() + "fehcha xd");
             pagoEstatusDAO.crear(entidad);
             System.out.println("se logro");
         } catch (Exception e) {

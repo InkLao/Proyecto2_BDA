@@ -16,6 +16,8 @@ import entidades.TipoEntidad;
 import excepciones.NegocioException;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import negocio.EstatusNegocio;
+import negocio.IEstatusNegocio;
 import negocio.IPagoEstatusNegocio;
 import negocio.IPagoNegocio;
 import negocio.IPrestamoNegocio;
@@ -36,7 +38,8 @@ public class frmNuevoPago extends javax.swing.JFrame {
     private IPagoNegocio pagoNegocio = new PagoNegocio();
     private ITipoNegocio tipoNegocio = new TipoNegocio();
     private IPagoEstatusNegocio estatusPago = new PagoEstatusNegocio();
-
+    private IEstatusNegocio estatus = new EstatusNegocio();
+    
     BeneficiarioDTO beneficiario;
     
     public frmNuevoPago(BeneficiarioDTO beneficiario) {
@@ -76,7 +79,8 @@ public class frmNuevoPago extends javax.swing.JFrame {
     }
 
     private void actualizarFecha() {
-        campoTextoFecha.setText(java.time.LocalDate.now().toString());
+        Date date = new Date();
+        campoTextoFecha.setText(date.toString());
     }
 
     /**
@@ -314,9 +318,15 @@ public class frmNuevoPago extends javax.swing.JFrame {
             
             PagoEstatusDTO pagoEstatusDto = new PagoEstatusDTO();
             pagoEstatusDto.setFechaHora(date);
+            pagoEstatusDto.setPagoId(pa);
+            EstatusEntidad en = new EstatusEntidad();
+            en.setId(estatus.obtenerPorId(((long) 1)).getId());
+            en.setNombre(estatus.obtenerPorId(((long) 1)).getNombre());
+            
+            pagoEstatusDto.setEstatusId(en);
                 System.out.println(pagoEstatusDto.getFechaHora().toString() + " fehca aqu");
             pagoEstatusDto.setPagoId(pa);
-            estatusPago.crear(pagoEstatusDto);
+            estatusPago.crear(pagoEstatusDto, pagoDT, en);
             
                     }
                 

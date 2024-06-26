@@ -4,7 +4,9 @@
  */
 package negocio;
 
+import DTO.PagoDTO;
 import DTO.PagoEstatusDTO;
+import entidades.EstatusEntidad;
 import excepciones.NegocioException;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
  * @author eduar
  */
 public interface IPagoEstatusNegocio {
-    PagoEstatusDTO crear(PagoEstatusDTO pagoEstatus) throws NegocioException;
+    PagoEstatusDTO crear(PagoEstatusDTO pagoEstatus, PagoDTO pago, EstatusEntidad en) throws NegocioException;
     PagoEstatusDTO obtenerPorId(Long id) throws NegocioException;
     List<PagoEstatusDTO> obtenerTodos() throws NegocioException;
     PagoEstatusDTO actualizar(PagoEstatusDTO pagoEstatus) throws NegocioException;
