@@ -16,6 +16,7 @@ import entidades.TipoEntidad;
 import excepciones.NegocioException;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import negocio.DatabaseInitializerService;
 import negocio.EstatusNegocio;
 import negocio.IEstatusNegocio;
 import negocio.IPagoEstatusNegocio;
@@ -40,11 +41,19 @@ public class frmNuevoPago extends javax.swing.JFrame {
     private IPagoEstatusNegocio estatusPago = new PagoEstatusNegocio();
     private IEstatusNegocio estatus = new EstatusNegocio();
     
-    BeneficiarioDTO beneficiario;
+    private DatabaseInitializerService databaseInitializerService = new DatabaseInitializerService();
+    private BeneficiarioDTO beneficiario;
     
     public frmNuevoPago(BeneficiarioDTO beneficiario) {
         this.beneficiario = beneficiario;
         initComponents();
+        
+        try {
+            // Inicializar la base de datos
+            databaseInitializerService.initializeDatabase();
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "Error al inicializar la base de datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
   // Inicializa el ComboBox correctamente
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Reembolso", "Proveedor", "Viático"}));
