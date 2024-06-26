@@ -23,6 +23,12 @@ public class EstatusNegocio implements IEstatusNegocio{
         this.estatusDAO = estatusDAO;
     }
 
+    public EstatusNegocio() {
+    }
+
+    
+    
+    
     @Override
     public EstatusDTO crear(EstatusDTO estatus) throws NegocioException {
         try {

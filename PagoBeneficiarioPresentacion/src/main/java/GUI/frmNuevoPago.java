@@ -5,12 +5,25 @@
 package GUI;
 
 import DTO.BeneficiarioDTO;
+import DTO.EstatusDTO;
+import DTO.PagoDTO;
+import DTO.PagoEstatusDTO;
 import DTO.PrestamoDTO;
-import entidades.PrestamoEntidad;
+import entidades.BeneficiarioEntidad;
+import entidades.EstatusEntidad;
+import entidades.PagoEntidad;
+import entidades.TipoEntidad;
 import excepciones.NegocioException;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import negocio.IPagoEstatusNegocio;
 import negocio.IPagoNegocio;
+import negocio.IPrestamoNegocio;
+import negocio.ITipoNegocio;
+import negocio.PagoEstatusNegocio;
 import negocio.PagoNegocio;
+import negocio.PrestamoNegocio;
+import negocio.TipoNegocio;
 import utilerias.Convertidor;
 
 /**
@@ -19,9 +32,15 @@ import utilerias.Convertidor;
  */
 public class frmNuevoPago extends javax.swing.JFrame {
 
+    private IPrestamoNegocio prestamoNegocio = new PrestamoNegocio();
     private IPagoNegocio pagoNegocio = new PagoNegocio();
+    private ITipoNegocio tipoNegocio = new TipoNegocio();
+    private IPagoEstatusNegocio estatusPago = new PagoEstatusNegocio();
 
-    public frmNuevoPago() {
+    BeneficiarioDTO beneficiario;
+    
+    public frmNuevoPago(BeneficiarioDTO beneficiario) {
+        this.beneficiario = beneficiario;
         initComponents();
 
   // Inicializa el ComboBox correctamente
@@ -236,8 +255,74 @@ public class frmNuevoPago extends javax.swing.JFrame {
             String tipo = (String) jComboBox1.getSelectedItem();
 
             PrestamoDTO prestamoDTO = new PrestamoDTO(monto, fecha, parcialidades);
+            PrestamoDTO prestamoDos;
+            prestamoDos = prestamoNegocio.crear(prestamoDTO);
+            
+            
+            
+            
+            Date date = new Date();
+            
+            BeneficiarioEntidad beneficario = new BeneficiarioEntidad();
+            beneficario.setClaveContrato(beneficiario.getClaveContrato());
+            beneficario.setContrasena(beneficiario.getContrasena());
+            beneficario.setId(beneficiario.getId());
+            beneficario.setMaterno(beneficiario.getMaterno());
+            beneficario.setNombres(beneficiario.getNombres());
+            beneficario.setPaterno(beneficiario.getPaterno());
+            beneficario.setSaldo(beneficiario.getSaldo());
+            beneficario.setUsuario(beneficario.getUsuario());
+            
+            PagoDTO pago = new PagoDTO();
+            pago.setBeneficiarioId(beneficario);
+            pago.setFechaHora(date);
+            pago.setMonto(monto);
+            System.out.println(date.toString());
+            try{
+            TipoEntidad tipo_entidad = new TipoEntidad();
+            
+            
+            
+            tipo_entidad.setId(tipoNegocio.obtenerPorId((long) 1).getId());
+            tipo_entidad.setNombre(tipoNegocio.obtenerPorId((long) 1 ).getNombre());
+            tipo_entidad.setNumeroParcialidades(tipoNegocio.obtenerPorId((long) 1).getNumeroParcialidades());
+            
+                System.out.println(tipo_entidad.getNombre().toString() + "llll");
+                System.out.println(tipo_entidad.getId().toString());
+            pago.setTipoId(tipo_entidad);
+            }
 
-            pagoNegocio.crear(prestamoDTO);
+            catch(NegocioException e){
+                System.out.println("error al obtener por id el la entidad tipo");
+            }
+            
+            
+            PagoDTO pagoDT = new PagoDTO();
+            
+            try{
+            pagoDT =  pagoNegocio.crear(pago);
+                    
+                    
+                    
+            PagoEntidad pa = new PagoEntidad();
+            pa.setBeneficiario(pago.getBeneficiarioId());
+            pa.setComprobante(pago.getComprobante());
+            pa.setFechaHora(pago.getFechaHora());
+            pa.setId(pago.getId());
+            pa.setMonto(pago.getMonto());
+            pa.setTipo(pago.getTipoId());
+            
+            PagoEstatusDTO pagoEstatusDto = new PagoEstatusDTO();
+            pagoEstatusDto.setFechaHora(date);
+                System.out.println(pagoEstatusDto.getFechaHora().toString() + " fehca aqu");
+            pagoEstatusDto.setPagoId(pa);
+            estatusPago.crear(pagoEstatusDto);
+            
+                    }
+                
+                catch(NegocioException e){
+                           System.out.println("erroe al guardar el pago");
+                        }
 
             JOptionPane.showMessageDialog(this, "Préstamo guardado exitosamente!");
         } catch (NegocioException e) {
@@ -247,7 +332,7 @@ public class frmNuevoPago extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        frmInicioUsuario InicioUsuarioFrame = new frmInicioUsuario();
+        frmInicioUsuario InicioUsuarioFrame = new frmInicioUsuario(beneficiario);
         InicioUsuarioFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed

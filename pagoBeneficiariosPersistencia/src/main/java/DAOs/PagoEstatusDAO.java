@@ -15,7 +15,7 @@ import javax.persistence.Persistence;
  * @author eduar
  */
 public class PagoEstatusDAO implements IPagoEstatusDAO{
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_unit_name");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_pagoBeneficiariosPersistencia_jar_1.0-SNAPSHOTPU");
 
     @Override
     public PagoEstatusEntidad crear(PagoEstatusEntidad pagoEstatus) {

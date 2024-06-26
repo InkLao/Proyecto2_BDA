@@ -15,8 +15,14 @@ public class frmInicioUsuario extends javax.swing.JFrame {
     /**
      * Creates new form frmInicioUsuario
      */
-    public frmInicioUsuario() {
+    
+    BeneficiarioDTO beneficiario;
+    
+    public frmInicioUsuario(BeneficiarioDTO beneficiario) {
         initComponents();
+        
+        this.beneficiario = beneficiario;
+        
          // Agregar ActionListener al botón Administrador
        btnAdministrarCuentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,14 +185,14 @@ public class frmInicioUsuario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAdministrarCuentasActionPerformed
 private void btnAdministrarAbonosActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-frmAdministrarAbonos adminFrame = new  frmAdministrarAbonos();
+frmAdministrarAbonos adminFrame = new  frmAdministrarAbonos(beneficiario);
         adminFrame.setVisible(true);
         this.dispose();
 
         
     }   
 private void btnAdministrarPagosActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-frmAdministrarPagos adminFrame = new  frmAdministrarPagos();
+frmAdministrarPagos adminFrame = new  frmAdministrarPagos(beneficiario);
         adminFrame.setVisible(true);
         this.dispose();
 

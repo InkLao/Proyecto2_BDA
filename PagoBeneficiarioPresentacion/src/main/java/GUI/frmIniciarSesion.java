@@ -184,7 +184,7 @@ public String getUsuario() {
             BeneficiarioDTO beneficiario = ibn.iniciarSesion(usuario, contrasena);
 
             if (beneficiario != null) {
-                frmInicioUsuario usuarioFrame = new frmInicioUsuario();
+                frmInicioUsuario usuarioFrame = new frmInicioUsuario(beneficiario);
                 usuarioFrame.setVisible(true);
                 this.dispose();
             } else {

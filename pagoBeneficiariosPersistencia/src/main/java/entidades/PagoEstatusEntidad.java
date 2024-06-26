@@ -35,7 +35,7 @@ public class PagoEstatusEntidad implements Serializable {
     @Column(nullable = false)
     private Date fechaHora;
 
-    @Column(length = 55)
+    @Column(length = 55, nullable = true)
     private String mensaje;
 
     @ManyToOne(cascade = (CascadeType.PERSIST))

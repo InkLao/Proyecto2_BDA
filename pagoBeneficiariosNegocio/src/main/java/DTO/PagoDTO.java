@@ -4,6 +4,9 @@
  */
 package DTO;
 
+import entidades.BeneficiarioEntidad;
+import entidades.EstatusEntidad;
+import entidades.TipoEntidad;
 import java.util.Date;
 
 /**
@@ -15,8 +18,23 @@ public class PagoDTO {
     private Date fechaHora;
     private Double monto;
     private String comprobante;
-    private Long beneficiarioId;
-    private Long tipoId;
+    private BeneficiarioEntidad beneficiarioId;
+    private BeneficiarioEntidad beneficiario;
+    private TipoEntidad tipoId;
+
+    public PagoDTO(Long id, Date fechaHora, Double monto, String comprobante, BeneficiarioEntidad beneficiarioId, TipoEntidad tipoId) {
+        this.id = id;
+        this.fechaHora = fechaHora;
+        this.monto = monto;
+        this.comprobante = comprobante;
+        this.beneficiarioId = beneficiarioId;
+        this.tipoId = tipoId;
+    }
+
+    
+    
+
+    
 
     public PagoDTO() {}
 
@@ -52,19 +70,21 @@ public class PagoDTO {
         this.comprobante = comprobante;
     }
 
-    public Long getBeneficiarioId() {
+    public BeneficiarioEntidad getBeneficiarioId() {
         return beneficiarioId;
     }
 
-    public void setBeneficiarioId(Long beneficiarioId) {
+    public void setBeneficiarioId(BeneficiarioEntidad beneficiarioId) {
         this.beneficiarioId = beneficiarioId;
     }
 
-    public Long getTipoId() {
+    
+    
+    public TipoEntidad getTipoId() {
         return tipoId;
     }
 
-    public void setTipoId(Long tipoId) {
+    public void setTipoId(TipoEntidad tipoId) {
         this.tipoId = tipoId;
     }
 }

@@ -25,22 +25,29 @@ public class PagoEstatusNegocio implements IPagoEstatusNegocio{
         this.pagoEstatusDAO = pagoEstatusDAO;
     }
 
+    public PagoEstatusNegocio() {
+    }
+
+   
+    
     @Override
     public PagoEstatusDTO crear(PagoEstatusDTO pagoEstatus) throws NegocioException {
         try {
             PagoEstatusEntidad entidad = new PagoEstatusEntidad();
             entidad.setFechaHora(pagoEstatus.getFechaHora());
+            System.out.println(entidad.getFechaHora().toString() +" estatus y fecha");
             entidad.setMensaje(pagoEstatus.getMensaje());
             
             PagoEntidad pago = new PagoEntidad();
-            pago.setId(pagoEstatus.getPagoId());
+            pago.setId(pagoEstatus.getPagoId().getId());
             entidad.setPago(pago);
             
             EstatusEntidad estatus = new EstatusEntidad();
-            estatus.setId(pagoEstatus.getEstatusId());
+            estatus.setId(pagoEstatus.getId());
             entidad.setEstatus(estatus);
             
             pagoEstatusDAO.crear(entidad);
+            System.out.println("se logro");
         } catch (Exception e) {
             throw new NegocioException("Error al crear el pago estatus", e);
         }
@@ -55,7 +62,7 @@ public class PagoEstatusNegocio implements IPagoEstatusNegocio{
             if (entidad == null) {
                 throw new NegocioException("Pago estatus no encontrado");
             }
-            return new PagoEstatusDTO(entidad.getId(), entidad.getFechaHora(), entidad.getMensaje(), entidad.getPago().getId(), entidad.getEstatus().getId());
+            return new PagoEstatusDTO(entidad.getId(), entidad.getFechaHora(), entidad.getMensaje(), entidad.getPago(), entidad.getEstatus());
         } catch (Exception e) {
             throw new NegocioException("Error al obtener el pago estatus por id", e);
         }
@@ -65,7 +72,7 @@ public class PagoEstatusNegocio implements IPagoEstatusNegocio{
     public List<PagoEstatusDTO> obtenerTodos() throws NegocioException {
         try {
             return pagoEstatusDAO.obtenerTodos().stream()
-                    .map(entidad -> new PagoEstatusDTO(entidad.getId(), entidad.getFechaHora(), entidad.getMensaje(), entidad.getPago().getId(), entidad.getEstatus().getId()))
+                    .map(entidad -> new PagoEstatusDTO(entidad.getId(), entidad.getFechaHora(), entidad.getMensaje(), entidad.getPago() , entidad.getEstatus()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             throw new NegocioException("Error al obtener todos los pago estatus", e);
@@ -83,11 +90,11 @@ public class PagoEstatusNegocio implements IPagoEstatusNegocio{
             entidad.setMensaje(pagoEstatus.getMensaje());
             
             PagoEntidad pago = new PagoEntidad();
-            pago.setId(pagoEstatus.getPagoId());
+            pago.setId(pagoEstatus.getPagoId().getId());
             entidad.setPago(pago);
             
             EstatusEntidad estatus = new EstatusEntidad();
-            estatus.setId(pagoEstatus.getEstatusId());
+            estatus.setId(pagoEstatus.getEstatusId().getId());
             entidad.setEstatus(estatus);
             
             pagoEstatusDAO.actualizar(entidad);

@@ -339,7 +339,7 @@ public class frmAdministrarCuentas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        frmInicioUsuario adminFrame = new  frmInicioUsuario ();
+        frmInicioAdmin adminFrame = new  frmInicioAdmin ();
         adminFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed

@@ -4,6 +4,8 @@
  */
 package DTO;
 
+import entidades.EstatusEntidad;
+import entidades.PagoEntidad;
 import java.util.Date;
 
 /**
@@ -14,14 +16,14 @@ public class PagoEstatusDTO {
     private Long id;
     private Date fechaHora;
     private String mensaje;
-    private Long pagoId;
-    private Long estatusId;
+    private PagoEntidad pagoId;
+    private EstatusEntidad estatusId;
 
     public PagoEstatusDTO() {
     
     }
 
-    public PagoEstatusDTO(Long id, Date fechaHora, String mensaje, Long pagoId, Long estatusId) {
+    public PagoEstatusDTO(Long id, Date fechaHora, String mensaje, PagoEntidad pagoId, EstatusEntidad estatusId) {
         this.id = id;
         this.fechaHora = fechaHora;
         this.mensaje = mensaje;
@@ -54,19 +56,19 @@ public class PagoEstatusDTO {
         this.mensaje = mensaje;
     }
 
-    public Long getPagoId() {
+    public PagoEntidad getPagoId() {
         return pagoId;
     }
 
-    public void setPagoId(Long pagoId) {
+    public void setPagoId(PagoEntidad pagoId) {
         this.pagoId = pagoId;
     }
 
-    public Long getEstatusId() {
+    public EstatusEntidad getEstatusId() {
         return estatusId;
     }
 
-    public void setEstatusId(Long estatusId) {
+    public void setEstatusId(EstatusEntidad estatusId) {
         this.estatusId = estatusId;
     }
 }

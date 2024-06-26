@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import DTO.BeneficiarioDTO;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,8 +16,13 @@ public class frmAdministrarAbonos extends javax.swing.JFrame {
     /**
      * Creates new form frmAdministrarAbonos
      */
-    public frmAdministrarAbonos() {
+    
+    BeneficiarioDTO beneficiario;
+    
+    public frmAdministrarAbonos(BeneficiarioDTO beneficiario) {
         initComponents();
+        
+        this.beneficiario = beneficiario;
     }
 
     /**
@@ -205,7 +211,7 @@ public class frmAdministrarAbonos extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
       
-         frmInicioUsuario adminFrame = new  frmInicioUsuario ();
+         frmInicioUsuario adminFrame = new  frmInicioUsuario (beneficiario);
         adminFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed

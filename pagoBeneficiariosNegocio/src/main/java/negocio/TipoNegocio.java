@@ -23,6 +23,11 @@ public class TipoNegocio implements ITipoNegocio{
         this.tipoDAO = tipoDAO;
     }
 
+    public TipoNegocio() {
+    }
+
+    
+    
     @Override
     public TipoDTO crear(TipoDTO tipo) throws NegocioException {
         try {

@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import DTO.BeneficiarioDTO;
+
 /**
  *
  * @author Arturo ITSON
@@ -13,8 +15,12 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
     /**
      * Creates new form frmAdministrarPagos
      */
-    public frmAdministrarPagos() {
+    
+    BeneficiarioDTO beneficiario;
+    
+    public frmAdministrarPagos(BeneficiarioDTO beneficiario) {
         initComponents();
+        this.beneficiario = beneficiario;
     
     }
 
@@ -246,13 +252,13 @@ public class frmAdministrarPagos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPagoActionPerformed
-       frmNuevoPago nuevoPagoFrame= new frmNuevoPago();
+       frmNuevoPago nuevoPagoFrame= new frmNuevoPago(beneficiario);
        nuevoPagoFrame.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_btnNuevoPagoActionPerformed
 
     private void btnRegresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresar1ActionPerformed
-     frmInicioUsuario adminFrame = new  frmInicioUsuario ();
+     frmInicioUsuario adminFrame = new  frmInicioUsuario (beneficiario);
         adminFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresar1ActionPerformed

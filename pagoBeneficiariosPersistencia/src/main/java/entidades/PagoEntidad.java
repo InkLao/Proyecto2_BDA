@@ -37,7 +37,7 @@ public class PagoEntidad implements Serializable {
     @Column(nullable = false, precision = 10, scale = 2)
     private Double monto;
 
-    @Column(nullable = false, length = 55)
+    @Column(nullable = true, length = 55)
     private String comprobante;
 
     @ManyToOne

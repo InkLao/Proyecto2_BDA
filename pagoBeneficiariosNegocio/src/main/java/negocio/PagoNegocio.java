@@ -4,9 +4,11 @@
  */
 package negocio;
 
+import DAOs.IPagoDAO;
 import DAOs.IPrestamoDAO;
-import DAOs.PrestamoDAO;
-import DTO.PrestamoDTO;
+import DAOs.PagoDAO;
+import DTO.PagoDTO;
+import entidades.PagoEntidad;
 import entidades.PrestamoEntidad;
 import excepciones.NegocioException;
 import excepciones.PersistenciaException;
@@ -20,10 +22,10 @@ import javax.persistence.PersistenceException;
  */
 public class PagoNegocio implements IPagoNegocio{
     
-    private IPrestamoDAO prestamoDAO = new PrestamoDAO();
+    private IPagoDAO pagoDAO = new PagoDAO();
 
-    public PagoNegocio(IPrestamoDAO prestamoDAO) {
-        this.prestamoDAO = prestamoDAO;
+    public PagoNegocio(IPagoDAO pagoDAO) {
+        this.pagoDAO = pagoDAO;
     }
 
     public PagoNegocio() {
@@ -31,37 +33,36 @@ public class PagoNegocio implements IPagoNegocio{
     }
 
     @Override
-    public PrestamoDTO crear(PrestamoDTO prestamo) throws NegocioException {
-        PrestamoEntidad entidad = new PrestamoEntidad();
-        entidad.setMonto(prestamo.getMonto());
-        System.out.println(prestamo.getMonto());
-        entidad.setFecha(prestamo.getFecha());
-        System.out.println(prestamo.getFecha());
-        entidad.setParcialidades(prestamo.getParcialidades());
-        System.out.println(prestamo.getParcialidades());
-        prestamoDAO.crear(entidad);
+    public PagoDTO crear(PagoDTO pago) throws NegocioException {
+        PagoEntidad entidad = new PagoEntidad();
+        entidad.setBeneficiario(pago.getBeneficiarioId());
+        entidad.setFechaHora(pago.getFechaHora());
+        entidad.setMonto(pago.getMonto());
+        entidad.setTipo(pago.getTipoId());
         
-        return prestamo;
+        pagoDAO.crear(entidad);
+        
+        return pago;
     }
 
     @Override
-    public PrestamoDTO obtenerPorId(Long id) throws NegocioException {
+    public PagoDTO obtenerPorId(Long id) throws NegocioException {
         try {
-            PrestamoEntidad entidad = prestamoDAO.obtenerPorId(id);
+            PagoEntidad entidad = pagoDAO.obtenerPorId(id);
             if (entidad == null) {
                 throw new NegocioException("Prestamo no encontrado");
             }
-            return new PrestamoDTO(entidad.getId(), entidad.getMonto(), entidad.getFecha(), entidad.getParcialidades());
+            return new PagoDTO(entidad.getId(), entidad.getFechaHora(), entidad.getMonto(), entidad.getComprobante(), entidad.getBeneficiario(),entidad.getTipo());
         } catch (Exception e) {
             throw new NegocioException("Error al obtener el prestamo por id", e);
         }
     }
 
     @Override
-    public List<PrestamoDTO> obtenerTodos() throws NegocioException {
+    public List<PagoDTO> obtenerTodos() throws NegocioException {
         try {
-            return prestamoDAO.obtenerTodos().stream()
-                    .map(entidad -> new PrestamoDTO(entidad.getId(), entidad.getMonto(), entidad.getFecha(), entidad.getParcialidades()))
+            return pagoDAO.obtenerTodos().stream()
+                    .map(entidad -> new PagoDTO(entidad.getId(), entidad.getFechaHora(), entidad.getMonto(), entidad.getComprobante(), entidad.getBeneficiario(),entidad.getTipo()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             throw new NegocioException("Error al obtener todos los prestamos", e);
@@ -69,27 +70,30 @@ public class PagoNegocio implements IPagoNegocio{
     }
 
     @Override
-    public PrestamoDTO actualizar(PrestamoDTO prestamo) throws NegocioException {
+    public PagoDTO actualizar(PagoDTO pago) throws NegocioException {
         try {
-            PrestamoEntidad entidad = prestamoDAO.obtenerPorId(prestamo.getId());
+            PagoEntidad entidad = pagoDAO.obtenerPorId(pago.getId());
             if (entidad == null) {
                 throw new NegocioException("Prestamo no encontrado");
             }
-            entidad.setMonto(prestamo.getMonto());
-            entidad.setFecha(prestamo.getFecha());
-            entidad.setParcialidades(prestamo.getParcialidades());
-            prestamoDAO.actualizar(entidad);
+            entidad.setBeneficiario(pago.getBeneficiarioId());
+            entidad.setComprobante(pago.getComprobante());
+            entidad.setFechaHora(pago.getFechaHora());
+            entidad.setMonto(pago.getMonto());
+            entidad.setTipo(pago.getTipoId());
+
+            pagoDAO.actualizar(entidad);
         } catch (Exception e) {
             throw new NegocioException("Error al actualizar el prestamo", e);
         }
         
-        return prestamo;
+        return pago;
     }
 
     @Override
     public void eliminar(Long id) throws NegocioException {
         try {
-            prestamoDAO.eliminar(id);
+            pagoDAO.eliminar(id);
         } catch (Exception e) {
             throw new NegocioException("Error al eliminar el prestamo", e);
         }
